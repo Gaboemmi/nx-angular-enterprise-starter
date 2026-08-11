@@ -27,9 +27,46 @@ export default [
                     ],
                     depConstraints: [
                         {
-                            sourceTag: "*",
+                            sourceTag: "scope:app",
                             onlyDependOnLibsWithTags: [
-                                "*"
+                                "scope:app",
+                                "scope:domain",
+                                "scope:platform",
+                                "scope:shared"
+                            ]
+                        },
+                        {
+                            sourceTag: "type:domain",
+                            onlyDependOnLibsWithTags: [
+                                "type:domain",
+                                "type:util"
+                            ]
+                        },
+                        {
+                            sourceTag: "type:application",
+                            onlyDependOnLibsWithTags: [
+                                "type:application",
+                                "type:domain",
+                                "type:util"
+                            ]
+                        },
+                        {
+                            sourceTag: "type:infrastructure",
+                            onlyDependOnLibsWithTags: [
+                                "type:infrastructure",
+                                "type:application",
+                                "type:domain",
+                                "type:platform",
+                                "type:util"
+                            ]
+                        },
+                        {
+                            sourceTag: "type:presentation",
+                            onlyDependOnLibsWithTags: [
+                                "type:presentation",
+                                "type:application",
+                                "type:ui",
+                                "type:util"
                             ]
                         }
                     ]
