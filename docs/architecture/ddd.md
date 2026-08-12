@@ -86,6 +86,12 @@ These are **responsibilities**, not mandatory folders.
 
 The physical Nx structure may group or split them depending on the size and complexity of the domain.
 
+Generic, reusable primitives for these layers (such as `MapperService` and
+`UseCaseService`) may live in the shared core library when multiple features
+demonstrate a stable common contract — see [Core DDD primitives](./core.md).
+State-management ownership and feature-store guidance live in
+[State management](./state-management.md).
+
 ## Domain
 
 Contains business concepts and rules.
@@ -341,7 +347,8 @@ unless the separation protects an intentional architectural boundary.
 
 # 6. Store
 
-Stores manage client-side state.
+Stores manage feature-level client-side state. See [State management](./state-management.md)
+for ownership, Router state, server state and lifecycle guidance.
 
 They are **not part of DDD itself**.
 

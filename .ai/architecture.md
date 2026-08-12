@@ -37,6 +37,8 @@ Read the relevant detailed source before making architectural decisions:
 
 - [Principles](../docs/architecture/principles.md)
 - [Domain-driven architecture](../docs/architecture/ddd.md)
+- [Core DDD primitives](../docs/architecture/core.md)
+- [State management](../docs/architecture/state-management.md)
 - [Authentication](../docs/architecture/authentication.md)
 - [Authorization and tenancy](../docs/architecture/authorization-and-tenancy.md)
 - [Internationalization](../docs/architecture/i18n-l10n.md) and
