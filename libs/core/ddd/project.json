@@ -1,0 +1,28 @@
+{
+  "name": "core-ddd",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/core/ddd/src",
+  "projectType": "library",
+  "tags": ["scope:shared", "type:util"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/core/ddd",
+        "main": "libs/core/ddd/src/index.ts",
+        "tsConfig": "libs/core/ddd/tsconfig.lib.json",
+        "assets": []
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "node node_modules/vitest/vitest.mjs run libs/core/ddd/src/lib"
+      }
+    }
+  }
+}

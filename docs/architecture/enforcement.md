@@ -1,5 +1,24 @@
 # Executable Architecture
 
+`tools/enforcement/` contains the repository-owned configuration and operating
+notes for ESLint, Sheriff, Nx boundaries, tests, and CI. This document remains
+the architectural policy; implementation details must not introduce a competing
+policy.
+
+## Enforcement layers
+
+| Layer         | Purpose                                                                | Current basis                                     |
+| ------------- | ---------------------------------------------------------------------- | ------------------------------------------------- |
+| TypeScript    | Make invalid contracts hard to represent.                              | Strict compiler settings.                         |
+| ESLint        | Catch static code and import violations early.                         | Flat configuration in `eslint.config.mjs`.        |
+| Nx boundaries | Enforce allowed project dependencies.                                  | Project tags and `@nx/enforce-module-boundaries`. |
+| Sheriff       | Add structural restrictions only where Nx and ESLint are insufficient. | Not installed.                                    |
+| Tests         | Protect behavior and rules static analysis cannot express.             | Nx unit-test and e2e targets.                     |
+| CI            | Run required checks consistently before integration.                   | GitHub Actions workflow.                          |
+
+Do not duplicate a rule across layers without a concrete reason. Prefer the
+smallest deterministic mechanism that catches the failure.
+
 ## Nx tags
 
 Libraries use a scope tag and a responsibility tag:
@@ -33,10 +52,16 @@ same pull request.
 An accepted ADR records a decision, not necessarily its completed implementation.
 The current foundation has three states:
 
-| Area | State | Next executable increment |
-| --- | --- | --- |
-| Nx boundaries | Started | Tag each new library and add boundary tests. |
-| Modern Angular | Started | Keep new components OnPush and zoneless-compatible. |
-| Auth, i18n, OpenAPI, design system | Designed | Implement a platform library and its test adapter before feature use. |
-| Runtime config, errors, observability, authorization | Designed | Add the respective typed platform contracts. |
+| Area                                                 | State    | Next executable increment                                             |
+| ---------------------------------------------------- | -------- | --------------------------------------------------------------------- |
+| Nx boundaries                                        | Started  | Tag each new library and add boundary tests.                          |
+| Angular conventions                                  | Delegated | Use the official Angular Agent Skill.                                |
+| Auth, i18n, OpenAPI, design system                   | Designed | Implement a platform library and its test adapter before feature use. |
+| Runtime config, errors, observability, authorization | Designed | Add the respective typed platform contracts.                          |
 
+## Change protocol
+
+An enforcement change must state the failure it prevents, update this policy and
+its owning implementation together, and include an executable regression check
+when configuration alone is insufficient. Run the relevant local target before
+relying on CI.

@@ -1,0 +1,8 @@
+---
+description: Route Cursor to the repository's canonical engineering Harness.
+alwaysApply: true
+---
+
+Follow [AGENTS.md](../../AGENTS.md) as the canonical repository instruction
+entry point. Do not treat this adapter as a second source of architecture,
+requirements, or validation rules.

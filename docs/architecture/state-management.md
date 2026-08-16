@@ -1,6 +1,6 @@
 # State Management
 
-State management should be predictable, local by default, and proportional to the feature's complexity. The architecture uses a unidirectional, Flux-inspired flow and Angular-native primitives where they fit. This is a principle, not a requirement to adopt a Flux or Redux framework.
+State management should be predictable, local by default, and proportional to the feature's complexity. This is a principle, not a requirement to adopt a Flux or Redux framework. Use the official Angular Agent Skill for framework-specific reactivity guidance.
 
 ## Flow
 
@@ -8,7 +8,7 @@ Separate commands from reads:
 
 ```text
 commands: Component -> Facade (when useful) -> Use case / Store / Router
-reads:    Store or Router -> readonly Signals -> Component
+reads:    Store or Router -> presentation -> Component
 
 Use case -> repository or port -> infrastructure repository -> datasource
 ```
@@ -29,18 +29,12 @@ Each meaningful piece of state has one owner. Prefer the narrowest scope that pr
 
 Do not create a feature store for state that belongs to one component or has a short lifecycle. Reactive forms own their form state unless a deliberate feature-level workflow needs a projection of it.
 
-## Signals and asynchronous work
+## Derived and asynchronous state
 
-Signals are the default for synchronous UI and application state. Expose readonly Signals and use `computed` for derived values. Consumers must not mutate store internals directly.
-
-```ts
-readonly incidents = signal<Incident[]>([]);
-readonly openIncidents = computed(() =>
-  this.incidents().filter((incident) => incident.status === 'OPEN'),
-);
-```
-
-RxJS remains appropriate for HTTP, WebSockets, event streams, cancellation and complex asynchronous composition. Choose the abstraction that represents the problem; do not introduce RxJS for simple synchronous state or convert every Observable to a Signal mechanically.
+Expose state through a controlled, read-only feature API. Derive values instead
+of independently storing them whenever possible, and do not let consumers
+mutate store internals directly. The Angular Agent Skill defines which Angular
+reactivity and asynchronous primitives best fit each implementation.
 
 Model asynchronous state so invalid combinations are hard to represent. Prefer a discriminated union over unrelated `loading` and `error` flags when a feature needs to distinguish request states:
 

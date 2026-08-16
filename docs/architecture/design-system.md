@@ -77,13 +77,13 @@ El Design System utilizará:
 - HTML semántico.
 - CSS Variables.
 - SCSS.
-- Angular standalone components.
-- Angular Signals.
-- ChangeDetectionStrategy.OnPush.
 - Angular Aria.
 - Angular CDK.
 - Storybook.
 - TypeScript estricto.
+
+Las convenciones de implementación de Angular se rigen por la Agent Skill oficial
+de Angular; este documento define la propiedad y los límites del Design System.
 
 No se utilizará Angular Material como base.
 

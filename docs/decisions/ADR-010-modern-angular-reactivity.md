@@ -1,22 +1,31 @@
-# ADR-010 — Modern Angular Reactivity
+# ADR-010 — Delegate Angular conventions to Angular
 
 **Status:** Accepted  
 **Date:** 2026-08
 
 ## Context
 
-The starter should follow current Angular direction instead of retaining historical state and change-detection patterns by default.
+The starter should follow current Angular direction without copying framework
+guidance into repository-owned documentation. Framework conventions evolve more
+quickly than this architecture and are maintained by the Angular team.
 
 ## Decision
 
-Prefer Signals, standalone APIs, OnPush, and zoneless Angular where supported by the adopted Angular version and dependencies. Signals are the default for synchronous UI/application state. RxJS remains appropriate for asynchronous streams, event streams, WebSockets, and complex async composition. Avoid mutable shared component state.
+Use the official Angular `angular-developer` Agent Skill for Angular code,
+including component APIs, reactivity, dependency injection, templates, routing,
+accessibility, testing, and CLI guidance. The Harness must not restate those
+rules.
+
+Repository documentation may define architecture that Angular cannot infer, such
+as state ownership, dependency direction, domain boundaries, and contracts.
 
 ## Consequences
 
-- Explicit reactivity, lower change-detection overhead, and long-term Angular alignment.
-- Teams must understand Signal/Observable boundaries; some dependencies may retain zone assumptions.
+- Angular practices stay current through their upstream source.
+- Repository guidance remains smaller and is limited to repository decisions.
+- Agents must have the Angular skill available when making Angular changes.
 
 ## Related documentation
 
-- `docs/architecture/principles.md`
-- `docs/architecture/design-system.md`
+- `.ai/README.md`
+- `docs/architecture/state-management.md`

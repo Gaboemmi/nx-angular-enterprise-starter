@@ -86,9 +86,10 @@ These are **responsibilities**, not mandatory folders.
 
 The physical Nx structure may group or split them depending on the size and complexity of the domain.
 
-Generic, reusable primitives for these layers (such as `MapperService` and
-`UseCaseService`) may live in the shared core library when multiple features
-demonstrate a stable common contract — see [Core DDD primitives](./core.md).
+The shared core library provides the stable `UseCase<Input, Output>` and
+`Mapper<From, To>` contracts. Features use `execute(input)`, `map(value)`, and
+`mapArray(values)` directly; it intentionally has no generic executor or mapper
+service. See [Core DDD primitives](./core.md).
 State-management ownership and feature-store guidance live in
 [State management](./state-management.md).
 
@@ -164,10 +165,8 @@ A Use Case may coordinate:
 Example:
 
 ```ts
-export class ReleaseTripUseCase {
-  constructor(
-    private readonly trips: TripRepository,
-  ) {}
+export class ReleaseTripUseCase implements UseCase<TripId, Promise<void>> {
+  constructor(private readonly trips: TripRepository) {}
 
   async execute(id: TripId): Promise<void> {
     const trip = await this.trips.getById(id);
@@ -317,8 +316,8 @@ Request DTO
 Example:
 
 ```ts
-export class TripMapper {
-  static fromDto(dto: TripDto): Trip {
+export class TripDtoToTripMapper extends Mapper<TripDto, Trip> {
+  map(dto: TripDto): Trip {
     return new Trip({
       id: dto.id,
       name: dto.trip_name,
@@ -336,7 +335,7 @@ Use a mapper when representations differ meaningfully.
 Do not create identity mappers such as:
 
 ```ts
-transform(dto: CountryDto): Country {
+map(dto: CountryDto): Country {
   return dto;
 }
 ```
@@ -352,7 +351,8 @@ for ownership, Router state, server state and lifecycle guidance.
 
 They are **not part of DDD itself**.
 
-They belong to the frontend architecture and may use Angular Signals or the project's selected state-management solution.
+They belong to the frontend architecture and use the reactivity approach selected
+for the implementation by the Angular Agent Skill.
 
 A Store may manage:
 
@@ -382,7 +382,7 @@ Business rules should not migrate into the Store merely because the Store can ex
 
 Not every state requires a Store.
 
-Prefer component-local Signals for state that:
+Prefer component-local state for state that:
 
 - belongs to one component;
 - has a short lifecycle;

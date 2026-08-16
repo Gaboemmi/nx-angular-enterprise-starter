@@ -9,7 +9,7 @@ Enterprise applications require a consistent visual language, accessibility stra
 
 ## Decision
 
-Provide a project-owned design system at `@ae/design-system`; Angular Material is not its base component system. Prefer semantic HTML, Angular Aria for complex accessible interactions, and Angular CDK for behavioral infrastructure. Common components expose standalone, strict, OnPush, Signals-appropriate APIs and favor directives when native semantics fit, e.g. `<button aeButton>`. Publish secondary entry points rather than a global barrel. Tokens progress from primitive to semantic to component tokens.
+Provide a project-owned design system at `@ae/design-system`; Angular Material is not its base component system. Prefer semantic HTML, Angular Aria for complex accessible interactions, and Angular CDK for behavioral infrastructure. Common components favor directives when native semantics fit, e.g. `<button aeButton>`. Publish secondary entry points rather than a global barrel. Tokens progress from primitive to semantic to component tokens. Use the Angular Agent Skill for framework-level component conventions.
 
 ## Consequences
 

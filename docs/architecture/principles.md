@@ -248,26 +248,12 @@ The architecture should make state flow predictable and understandable.
 
 ---
 
-## 14. Prefer Modern Angular
+## 14. Let Angular Define Angular
 
-The project should follow Angular's current architectural direction.
-
-Prefer modern Angular capabilities when they provide clearer and simpler solutions, including:
-
-- standalone APIs,
-- Signals,
-- functional APIs where appropriate,
-- explicit change detection strategies,
-- modern dependency injection,
-- and zoneless-compatible architecture.
-
-Do not preserve legacy Angular patterns solely because they were historically common.
-
-At the same time:
-
-> Modern does not automatically mean better.
-
-New APIs should be adopted because they improve the system, not simply because they are new.
+Use the official Angular Agent Skill for framework conventions. This repository
+does not maintain duplicate rules for component APIs, reactivity, dependency
+injection, templates, modules, or change detection. Its architecture defines
+only the boundaries and ownership that Angular cannot infer.
 
 ---
 

@@ -22,10 +22,13 @@ configuration areas may be more pragmatic, but must not become a home for
 business logic without clear ownership. Features expose the smallest useful
 public API; complex features may use a facade for their presentation boundary.
 
+`@nx-angular-enterprise-starter/core/ddd` provides framework-independent
+`UseCase<Input, Output>` and `Mapper<From, To>` contracts. Use their direct
+`execute`, `map`, and `mapArray` operations; do not introduce generic executor
+or mapper-service indirection without an actual cross-cutting responsibility.
+
 ## Repository positions
 
-- Use modern Angular patterns: standalone APIs, Signals, OnPush, and
-  zoneless-compatible design where supported.
 - Keep provider SDKs and transport concerns behind infrastructure boundaries.
 - The design system owns reusable UI behavior, accessibility patterns, and
   tokens; applications own product and domain composition.

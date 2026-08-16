@@ -5,52 +5,60 @@ common contract across multiple features. It is shared infrastructure, not a
 home for business logic or a collection of abstractions created in advance.
 
 ```text
-core/
-└── ddd/
-    ├── mapper.service.ts
-    ├── async-mapper.service.ts
-    └── use-case.service.ts
+libs/core/ddd/
+└── src/
+    ├── index.ts
+    └── lib/
+        ├── mapper.ts
+        └── use-case.ts
 ```
 
-## Mapper service
+## Mapper
 
 Mappers translate between representations, most commonly an API DTO and a
 domain model.
 
 ```ts
-export abstract class MapperService<From, To> {
-  abstract transform(input: From): To;
+export abstract class Mapper<From, To> {
+  abstract map(source: From): To;
 
-  transformArray(inputs: From[]): To[] {
-    return inputs.map((input) => this.transform(input));
+  mapArray(sources: readonly From[]): To[] {
+    return sources.map((source) => this.map(source));
   }
 }
 ```
 
-An asynchronous variant may return `Promise<To>`. Feature mappers extend these
-classes only when the mapping boundary is meaningful; do not add identity
-mappers mechanically.
+Feature mappers extend this class only when the mapping boundary is meaningful;
+do not add identity mappers mechanically. Mappers are synchronous: asynchronous
+work belongs in a repository, datasource, or use case, not a transformation.
 
-## Use-case service
+## Use case
 
 Use cases express application intent and coordinate domain behaviour.
 
 ```ts
-export abstract class UseCaseService<Params, Result> {
-  abstract execute(params: Params): Promise<Result>;
+export interface UseCase<Input, Output> {
+  execute(input: Input): Output;
 }
 ```
 
 A use case may coordinate domain objects, repositories or ports, authorization
-rules and application workflows. Do not create one merely to delegate a trivial
+rules and application workflows. `Output` may be a synchronous value, a
+`Promise`, or an `Observable`; the core contract deliberately does not choose
+an asynchronous abstraction. Do not create one merely to delegate a trivial
 operation without application semantics.
+
+Use the public API from `@nx-angular-enterprise-starter/core/ddd`. Invoke use
+cases directly with `useCase.execute(input)` and mappers with `mapper.map(value)`
+or `mapper.mapArray(values)`. The core does not provide a generic executor or
+mapper service because neither has a cross-cutting responsibility yet.
 
 ## State management
 
 Feature stores remain feature-owned by default. Do not add a generic store base
 class to `core/` until concrete features establish a stable common contract.
-See [State management](./state-management.md) for state ownership, Signals,
-Router state and server-data guidance.
+See [State management](./state-management.md) for state ownership, Router state
+and server-data guidance.
 
 ## Constraints
 
