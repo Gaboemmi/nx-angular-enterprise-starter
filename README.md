@@ -1,65 +1,68 @@
 # Nx Angular Enterprise Starter
 
-Una base opinada y orientada a producción para aplicaciones Angular enterprise
-con Nx. El objetivo es comenzar con un monolito modular comprensible y hacerlo
-evolucionar sin perder límites de dominio, calidad ni capacidad de despliegue.
+An opinionated, production-oriented foundation for modern enterprise Angular
+applications built with Nx.
 
-No es una demo ni un framework sobre Angular: proporciona decisiones,
-convenciones y validaciones para que el camino más sencillo sea también el
-arquitectónicamente correcto.
+This repository starts with an understandable modular monolith and provides the
+architecture, decision records, and executable safeguards needed to evolve it
+without losing domain boundaries, quality, or deployment flexibility. It is not
+a demo application or a framework on top of Angular: its purpose is to make the
+simplest path the architecturally correct one.
 
-## Estado actual
+## Current status
 
-El repositorio está en fase de fundación. La aplicación incluida es el punto de
-arranque técnico; la arquitectura y sus límites ya están documentados y parte
-de ellos se aplica automáticamente.
+The repository is in its foundation stage. The Angular application and the
+first framework-independent DDD primitives are implemented; the wider platform
+architecture is designed and documented, ready to be adopted incrementally.
 
-| Área | Estado |
+| Area | Status |
 | --- | --- |
-| Nx, aplicación standalone, `OnPush`, zoneless y TypeScript estricto | Base implementada |
-| Tags Nx y restricciones de dependencias | Base implementada |
-| DDD, autenticación, i18n, fecha/hora, OpenAPI y design system | Arquitectura definida |
-| Auth, i18n/Tolgee, OpenAPI, design system, observabilidad y configuración runtime | Pendiente de implementación por plataformas/librerías |
+| Nx workspace, standalone Angular application, strict TypeScript, `OnPush`, and zoneless compatibility | Implemented |
+| Nx project tags and ESLint dependency-boundary rules | Implemented foundation |
+| `UseCase` and `Mapper` primitives in `@nx-angular-enterprise-starter/core/ddd` | Implemented |
+| DDD, authentication, authorization, i18n, date/time, OpenAPI, design system, and testing strategy | Architecture defined |
+| Provider integrations for auth, Tolgee, OpenAPI, runtime configuration, observability, and design system | Not yet implemented |
 
-Una ADR aceptada expresa una decisión; no implica que su integración técnica ya
-esté terminada. El detalle de la adopción se mantiene en
-[arquitectura ejecutable](docs/architecture/enforcement.md).
+An accepted ADR records a decision; it does not mean its technical integration
+is already complete. See [executable architecture](docs/architecture/enforcement.md)
+for the adoption status and next increments.
 
-## Principios
+## Guiding principles
 
-- Organizar el negocio por dominios y capacidades, no por carpetas técnicas.
-- Mantener las dependencias hacia conceptos estables: dominio y aplicación no
-  conocen HTTP, SDKs de proveedores ni UI.
-- Empezar con un monolito modular: federation-ready, no federation-first.
-- Usar Angular moderno: standalone, Signals cuando aportan valor, `OnPush` y
-  compatibilidad zoneless.
-- Tratar la infraestructura externa como reemplazable detrás de contratos de
-  aplicación.
-- Convertir las reglas importantes en validaciones, no solo en instrucciones.
-- Priorizar simplicidad y añadir patrones únicamente cuando protegen una
-  responsabilidad real.
+- Organize business code around domains and capabilities, not technical folders.
+- Keep dependencies pointed at stable concepts: domain and application code do
+  not know HTTP, provider SDKs, or UI details.
+- Start as a modular monolith: **federation-ready, not federation-first**.
+- Use modern Angular deliberately: standalone APIs, signals where they add
+  value, `OnPush`, and zoneless-compatible code.
+- Keep external infrastructure replaceable behind explicit contracts when that
+  boundary protects a real responsibility.
+- Enforce important rules through tooling, tests, and CI rather than prose
+  alone.
+- Prefer the minimum architecture that preserves maximum clarity.
 
-## Arquitectura
+## Architecture
 
-Las responsabilidades de una funcionalidad de negocio se ordenan así:
+Business-feature responsibilities follow this dependency direction:
 
 ```text
 presentation -> application -> domain
-infrastructure -> implementa contratos de domain/application
+infrastructure -> implements domain or application contracts
 ```
 
-No todas las funcionalidades necesitan todas las capas. Una feature sencilla
-puede usar estado local; una compleja puede exponer una fachada y separar casos
-de uso, puertos, repositorios y mapeadores. Los detalles están en
-[DDD](docs/architecture/ddd.md).
+Not every feature needs every layer. A simple feature may keep local state,
+while a complex feature may expose a facade and separate use cases, ports,
+repositories, and mappers. The application composes domains and platform
+capabilities; cross-domain communication happens through public APIs, explicit
+contracts, routes, or events when justified—not through internal implementation
+imports.
 
-Las aplicaciones componen dominios y capacidades de plataforma. La comunicación
-entre dominios ocurre por APIs públicas, contratos explícitos, rutas o eventos
-cuando están justificados; nunca mediante imports de implementaciones internas.
+Read the [domain-driven architecture guide](docs/architecture/ddd.md) before
+making structural decisions.
 
-### Límites ejecutables
+### Executable boundaries
 
-Las librerías deben recibir un tag de alcance y otro de responsabilidad:
+Libraries receive both a scope tag and a responsibility tag:
 
 ```text
 scope:domain | scope:platform | scope:shared | scope:app
@@ -67,79 +70,98 @@ type:domain | type:application | type:infrastructure | type:presentation |
 type:ui | type:util | type:platform
 ```
 
-ESLint/Nx impide las direcciones principales no permitidas. Por ejemplo, un
-dominio solo puede depender de dominio/utilidades, y presentación no puede
-importar infraestructura directamente. Consulta la matriz completa en
-[enforcement](docs/architecture/enforcement.md).
+Nx and ESLint enforce the principal dependency directions. For example, domain
+libraries may depend only on domain libraries and utilities; presentation may
+use application APIs and UI/util libraries, but never infrastructure directly.
+The full policy is in [executable architecture](docs/architecture/enforcement.md).
 
-## Capacidades de plataforma
+## Platform architecture
 
-- [Autenticación](docs/architecture/authentication.md): identidad y sesión
-  agnósticas al proveedor.
-- [Autorización y tenancy](docs/architecture/authorization-and-tenancy.md):
-  permisos de aplicación y tenant activo, independientes de autenticación.
-- [Internacionalización y localización](docs/architecture/i18n-l10n.md): idioma,
-  locale y zona horaria son conceptos separados; Tolgee es infraestructura.
-- [Fecha y hora](docs/architecture/datetime.md): instantes UTC, valores locales
-  con semántica explícita y zonas IANA.
-- [Configuración runtime](docs/architecture/runtime-configuration.md): valores
-  públicos por despliegue, validados antes del arranque.
-- [OpenAPI](docs/architecture/openapi.md): contrato backend/frontend y código
-  generado contenido en infraestructura.
-- [HTTP y errores](docs/architecture/http-and-errors.md): transporte,
-  normalización de fallos y responsabilidades de interceptores.
-- [Observabilidad](docs/architecture/observability.md): contratos de telemetría,
-  correlación y protección de datos.
-- [Design system](docs/architecture/design-system.md): HTML semántico,
-  accesibilidad, tokens y APIs UI estables.
-- [Federación](docs/architecture/federation.md): futura capacidad de despliegue,
-  no una dependencia de las funcionalidades.
-- [Estrategia de pruebas](docs/architecture/testing-strategy.md): pruebas por
-  responsabilidad, contratos y flujos críticos.
+The following capabilities have documented boundaries and adoption guidance:
 
-## Decisiones y documentación
+- [Authentication](docs/architecture/authentication.md) and
+  [authorization/tenancy](docs/architecture/authorization-and-tenancy.md)
+- [Internationalization and localization](docs/architecture/i18n-l10n.md) and
+  [date/time semantics](docs/architecture/datetime.md)
+- [Runtime configuration](docs/architecture/runtime-configuration.md)
+- [OpenAPI contracts](docs/architecture/openapi.md),
+  [HTTP and errors](docs/architecture/http-and-errors.md), and
+  [observability](docs/architecture/observability.md)
+- [Application-owned design system](docs/architecture/design-system.md)
+- [State management](docs/architecture/state-management.md),
+  [testing strategy](docs/architecture/testing-strategy.md), and
+  [future federation](docs/architecture/federation.md)
 
-La documentación está deliberadamente separada:
+## Documentation and decisions
+
+The project deliberately separates its sources of truth:
 
 ```text
-Visión -> Arquitectura -> ADRs -> Especificaciones -> Implementación
+Vision -> Architecture -> ADRs -> Specifications -> Implementation
 ```
 
-- [Visión del proyecto](docs/vision.md)
-- [Principios de ingeniería](docs/architecture/principles.md)
-- [Documentación de arquitectura](docs/architecture/)
+- [Project vision](docs/vision.md)
+- [Engineering principles](docs/architecture/principles.md)
+- [Architecture documentation](docs/architecture/)
 - [Architecture Decision Records](docs/decisions/README.md)
-- [Harness para contribuidores y agentes](AGENTS.md)
+- [Engineering Harness for contributors and AI agents](AGENTS.md)
 
-Las ADRs explican el porqué de las decisiones. Las guías de arquitectura
-describen la estructura y las especificaciones futuras deberán concretar cambios
-implementables y criterios de aceptación.
+ADRs explain why durable choices were made. Architecture guides describe how
+those choices shape the system. Specifications should define implementable
+changes and acceptance criteria.
 
-## Desarrollo y validación
+## Engineering Harness
 
-Requisitos: Node.js y las dependencias instaladas con `npm install`.
+The repository includes a small, agent-agnostic Engineering Harness that gives
+both people and AI coding agents durable repository context.
+
+- [`AGENTS.md`](AGENTS.md) is the always-on entry point.
+- [`.ai/architecture.md`](.ai/architecture.md) is the compact architecture map.
+- [`.ai/decisions/`](.ai/decisions/) contains short, agent-oriented decision pointers.
+- [`.ai/skills/`](.ai/skills/) contains repository-specific procedures when a
+  recurring convention has been proven.
+
+Framework guidance belongs to Angular; workspace operations and generators
+belong to Nx. The Harness owns only repository-specific architecture, ownership,
+dependency direction, decisions, and validation guidance. See
+[ADR-013](docs/decisions/ADR-013-agent-agnostic-ai-harness.md) for the model.
+
+## Getting started
+
+Prerequisites: Node.js 22 (the CI runtime) and npm.
 
 ```bash
+npm ci
 npx nx serve app
+```
+
+In PowerShell environments that restrict script execution, use `npx.cmd` in
+place of `npx`.
+
+## Validation
+
+Run validation through Nx and target the project affected by the change:
+
+```bash
 npx nx lint app
 npx nx test app
 npx nx build app
 npx nx e2e app-e2e
 ```
 
-En PowerShell con ejecución de scripts restringida, usa `npx.cmd` en lugar de
-`npx`.
+The CI pipeline runs lint, unit tests, and builds for all projects on pull
+requests and pushes to `main`.
 
-Para un cambio de arquitectura o configuración, ejecuta al menos lint, tests y
-build del proyecto afectado, revisa los tags/dependencias Nx y actualiza la
-documentación o ADR correspondiente cuando cambie una decisión duradera.
+For an architectural or configuration change, run the affected lint, tests, and
+build; review project tags and dependencies; and update the corresponding
+architecture document or ADR when a durable decision changes.
 
-## Contribución
+## Contributing
 
-Antes de implementar, lee [AGENTS.md](AGENTS.md) y el mapa
-[`.ai/architecture.md`](.ai/architecture.md). Mantén los cambios acotados,
-evita crear un `shared` para lógica de negocio y no introduzcas SDKs de
-proveedores en funcionalidades de dominio.
+Before implementing a change, read [`AGENTS.md`](AGENTS.md) and the
+[architecture map](.ai/architecture.md). Keep changes focused, preserve feature
+and domain ownership, avoid using `shared` as a home for business logic, and do
+not let provider SDKs leak into domain code.
 
-La arquitectura sirve a la aplicación: patrones como facades, stores, casos de
-uso, repositorios y mapeadores son herramientas, no capas obligatorias.
+Facades, stores, use cases, repositories, and mappers are tools—not mandatory
+layers. Introduce them only when they protect a real responsibility.
