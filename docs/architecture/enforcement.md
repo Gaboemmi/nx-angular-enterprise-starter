@@ -19,6 +19,13 @@ policy.
 Do not duplicate a rule across layers without a concrete reason. Prefer the
 smallest deterministic mechanism that catches the failure.
 
+The ESLint baseline composes `@eslint/js` recommended,
+`typescript-eslint` `strictTypeChecked` and `stylisticTypeChecked`, plus
+`angular-eslint` TypeScript, template and template-accessibility recommended
+rules. Type-aware rules use the TypeScript project service. The `*-all`
+presets are intentionally excluded: they are not a stable application
+baseline.
+
 ## Nx tags
 
 Libraries use a scope tag and a responsibility tag:

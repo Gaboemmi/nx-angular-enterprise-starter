@@ -4,7 +4,7 @@ import { Mapper } from './mapper';
 
 class NumberToTextMapper extends Mapper<number, string> {
   map(source: number): string {
-    return `value-${source}`;
+    return `value-${String(source)}`;
   }
 }
 
