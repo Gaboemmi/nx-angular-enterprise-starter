@@ -13,6 +13,7 @@ signal in its CI Quality Gate; it does not change the purpose or scope of tests.
 | E2E                  | Critical user journeys across routing and platform integration. |
 | Contract             | OpenAPI compatibility and generated-client lifecycle.           |
 | Design system        | Interaction, accessibility and visual regressions.              |
+| Architecture         | Project tags, scope isolation and forbidden dependency edges.   |
 
 External providers such as identity, Tolgee and telemetry are replaced by
 deterministic test adapters. CI should run affected lint, unit tests, build and
@@ -32,3 +33,7 @@ The repository uses different test runners depending on library type:
 
 Both runners produce LCOV coverage reports. The choice is determined by whether
 the library depends on Angular.
+
+The pure JavaScript `architecture-enforcement` project uses Vitest through an
+Nx `run-commands` target. Its negative cases protect the Nx dependency policy,
+while its `check` target validates the tags of the current project graph.

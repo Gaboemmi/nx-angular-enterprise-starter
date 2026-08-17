@@ -6,7 +6,7 @@ Adding an adapter that communicates with REST, GraphQL, browser storage, Indexed
 
 ## Steps
 
-1. Confirm that this code belongs to the owning feature or platform infrastructure boundary, not domain or presentation.
+1. Confirm that this code belongs to the owning context or platform infrastructure boundary, not domain or presentation. A business Nx boundary uses `scope:<bounded-context>,type:infrastructure`; do not introduce `type:data-access`.
 2. Keep transport mechanics here: URLs, methods, parameters, headers, DTOs, serialization, and provider-specific behavior.
 3. Consume the platform HTTP and authentication facilities; do not create feature-specific interceptors or attach provider tokens manually.
 4. Return transport representations only to infrastructure collaborators such as a repository or mapper. Do not expose generated clients or DTOs as domain entities.

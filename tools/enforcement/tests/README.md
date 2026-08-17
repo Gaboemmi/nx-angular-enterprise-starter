@@ -19,3 +19,13 @@ deterministas. No imponer una cuota de cobertura sin una decisión explícita.
 
 Añadir una prueba de arquitectura cuando una regla importante no sea
 representable de manera fiable por TypeScript, ESLint o Nx.
+
+El proyecto `architecture-enforcement` verifica que todos los proyectos tengan
+un scope y un tipo canónicos. Sus casos negativos protegen cruces entre bounded
+contexts, feature-to-feature, app-to-feature, domain-to-infrastructure y
+ui-to-infrastructure:
+
+```bash
+npx nx check architecture-enforcement
+npx nx test architecture-enforcement
+```

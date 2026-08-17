@@ -31,6 +31,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Architecture policy
+        run: npx nx check architecture-enforcement --outputStyle=static
+
       - name: Lint
         run: npx nx run-many --target=lint --all --outputStyle=static
 

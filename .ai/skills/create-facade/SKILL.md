@@ -7,7 +7,9 @@ A complex feature needs a stable presentation-facing API that hides meaningful c
 ## Steps
 
 1. Confirm the facade adds an abstraction. Do not create a pass-through wrapper around one dependency.
-2. Keep it feature-owned and expose a small API of readonly state and intent-oriented commands for components.
+2. Keep it feature-owned in `type:feature` by default and expose a small API of
+   readonly state and intent-oriented commands for components. Do not create a
+   separate project only to hold a facade.
 3. Coordinate stores, use cases, and Router interactions as required; components must not access datasources or infrastructure repositories directly.
 4. Keep business rules in domain/application code and transport concerns in infrastructure.
 5. Avoid base facades and broad `IFacade` contracts until concrete feature implementations demonstrate a stable shared responsibility.

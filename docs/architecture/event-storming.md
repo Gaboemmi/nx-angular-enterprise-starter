@@ -162,17 +162,18 @@ Use the discovery output in this order:
 2. Features express cohesive capabilities inside that vertical.
 3. Domain, application, infrastructure, and presentation remain internal
    responsibilities introduced only as complexity requires.
-4. A `type:shell` library composes a bounded context when it has multiple
-   routes or features to compose.
-5. Cross-context work uses the smallest explicit public contract.
+4. A `type:shell` library is the application's routing and composition boundary
+   for a delivered bounded context, even when it initially exposes one feature.
+5. Cross-context work uses runtime APIs/events, application composition, or a
+   deliberately shared stable contract, never a direct import into another scope.
 6. Nx tags and dependency rules enforce the physical boundaries the workspace
    has actually adopted.
 
-The current `scope:*` tags do not identify individual bounded contexts, so they
-cannot yet prove cross-vertical isolation mechanically. Follow the documented
-rule and the current enforcement limit in
-[Executable architecture](./enforcement.md); do not invent a tag scheme during
-feature implementation.
+The scope registry and executable dependency policy identify bounded contexts
+exactly. It is currently empty because the starter has no real business context;
+register the first context when discovery leads to its first Nx project boundary.
+See [Executable architecture](./enforcement.md) rather than inventing a tag
+scheme during feature implementation.
 
 See [Domain-Driven Design](./ddd.md) for responsibility and dependency
 direction and [Application composition](./application-composition.md) for the

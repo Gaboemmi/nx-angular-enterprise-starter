@@ -15,8 +15,8 @@ diverge, the architecture is broken regardless of whether the code works.
 
 The project maintains:
 
-- `docs/architecture/` — 18 architecture documents
-- `docs/decisions/` — 16 ADRs
+- `docs/architecture/` — architecture documents
+- `docs/decisions/` — architecture decision records
 - `docs/vision.md` — project vision
 - `.ai/architecture.md` — compact agent-facing architecture map
 - `.ai/decisions/` — agent-oriented decision summaries

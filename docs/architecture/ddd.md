@@ -92,6 +92,25 @@ These are **responsibilities**, not mandatory folders.
 
 The physical Nx structure may group or split them depending on the size and complexity of the domain.
 
+### Architecture Matrix
+
+When a responsibility needs an Nx project boundary, two tags classify it:
+
+```text
+scope:<bounded-context> × type:<responsibility>
+```
+
+The scope identifies the owning vertical. The type identifies one canonical
+project role: `shell`, `feature`, `ui`, `application`, `domain`, or
+`infrastructure`. Presentation remains the conceptual outer responsibility;
+shells own context composition, features own route/container behavior, and UI
+libraries own presentational domain components.
+
+The matrix is sparse by design. Do not create every cell, or the full
+interaction pipeline below, unless each boundary protects a concrete
+responsibility. See [ADR-018](../decisions/ADR-018-architecture-matrix-tags.md)
+and [Executable Architecture](./enforcement.md).
+
 The shared core library provides the stable `UseCase<Input, Output>` and
 `Mapper<From, To>` contracts. Features use `execute(input)`, `map(value)`, and
 `mapArray(values)` directly; it intentionally has no generic executor or mapper
@@ -636,12 +655,14 @@ Presentation must not contain domain rules.
 
 # 11. Cross-Domain Communication
 
-Domains must not import another domain's internal implementation.
+Bounded contexts must not import one another directly, including through a
+public entry point.
 
-Keep verticals independent. When one vertical needs another's capability, it
-depends on the smallest explicit public contract it needs, not on the other
-vertical's services, store, components, datasource, or implementation details.
-The owning application or shell composes independently owned verticals.
+Keep verticals independent. When one vertical needs another's capability, use a
+runtime API/event, application composition, or a deliberately extracted stable
+contract in `scope:shared`, not the other vertical's services, store,
+components, datasource, or implementation details. The owning application
+composes independently owned verticals through their shells.
 
 Avoid:
 

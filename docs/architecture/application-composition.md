@@ -24,8 +24,9 @@ loading strategy, not the dependency the Nx boundary rule evaluates.
 
 ## Minimum contract
 
-Each shell is an Angular library tagged `scope:domain,type:shell` and exposes a
-single public routing contract from its `src/index.ts`:
+Each shell is an Angular library tagged with its exact bounded-context scope,
+for example `scope:orders,type:shell`, and exposes a single public routing
+contract from its `src/index.ts`:
 
 ```ts
 export const ORDERS_ROUTES: Routes = [
@@ -60,8 +61,8 @@ npx nx g ./tools/generators/collection.json:shell --name=orders --no-interactive
 ```
 
 This creates `libs/domains/orders/shell`, its public route contract and its
-project tags. Add feature routes manually to preserve an explicit composition
-decision.
+project tags, and registers `orders` in the executable boundary policy. Add
+feature routes manually to preserve an explicit composition decision.
 
 ## Enforcement
 
@@ -69,8 +70,11 @@ decision.
 `eslint.config.mjs`:
 
 - `type:app` may depend on `type:shell` and cross-cutting platform/UI/util libraries.
-- `type:shell` may depend on `type:feature` and application/domain/platform/UI/util libraries.
+- `type:shell` may depend on its context's `type:feature` and
+  `type:infrastructure` projects plus application/domain/platform/UI/util libraries.
 - `type:feature` may not depend on another `type:feature` or a `type:shell`.
 
 The rules work only when every library has truthful scope and responsibility
 tags. Do not use untagged libraries or broad ESLint allowlists to bypass them.
+Scope constraints additionally ensure that this shell can load features only
+from its own bounded context.

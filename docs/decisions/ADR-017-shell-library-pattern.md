@@ -32,5 +32,6 @@ for `type:app`, `type:shell` and `type:feature`.
   tags.
 - A context can later move behind a different deployment boundary without
   changing its internal feature composition.
-- The pattern adds one library per bounded context only when that context has
-  multiple routes or features to compose.
+- The pattern adds one minimal library for each bounded context delivered by an
+  application, even when it initially exposes a single feature. It does not add
+  a component, state layer, or deployment abstraction.

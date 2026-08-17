@@ -9,7 +9,7 @@ Markdown-only architecture degrades through accidental imports and hidden coupli
 
 ## Decision
 
-Machine-enforce architecture where reasonably possible through Nx project tags and dependency constraints, ESLint, architecture-specific linting, Sheriff where useful, and CI checks. Examples of forbidden dependencies include `domain → infrastructure`, `domain → Angular`, direct access to another domain’s internals, and `presentation → datasource`. Cross-domain dependencies use explicit public contracts.
+Machine-enforce architecture where reasonably possible through Nx project tags and dependency constraints, ESLint, architecture-specific linting, Sheriff where useful, and CI checks. Examples of forbidden dependencies include `domain → infrastructure`, `domain → Angular`, direct dependencies between bounded-context scopes, and `presentation → datasource`. Cross-context collaboration uses runtime APIs/events, application composition, or a deliberately extracted stable contract in `scope:shared`; a public entry point does not by itself permit a cross-scope import.
 
 ## Consequences
 

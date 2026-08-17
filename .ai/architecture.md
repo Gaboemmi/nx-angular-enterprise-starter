@@ -44,10 +44,14 @@ trivial changes and does not imply event sourcing or asynchronous messaging.
 Libraries use Nx tags to declare scope and responsibility:
 
 ```text
-scope:domain | scope:platform | scope:shared | scope:app
-type:domain | type:application | type:infrastructure | type:presentation |
-type:ui | type:util | type:platform | type:shell | type:feature
+scope:<bounded-context> | scope:platform | scope:shared | scope:app
+type:app | type:e2e | type:shell | type:feature | type:ui |
+type:application | type:domain | type:infrastructure | type:platform | type:util
 ```
+
+`presentation` is a conceptual responsibility represented at project level by
+`shell`, `feature`, or `ui`. The matrix classifies justified boundaries; it does
+not require one project for every scope/type cell.
 
 An app composes each bounded context through a `type:shell` library. A shell
 owns its route composition and may load the context's features; features never
@@ -70,7 +74,9 @@ or mapper-service indirection without an actual cross-cutting responsibility.
   tokens; applications own product and domain composition.
 - Keep features independent of deployment topology: federation-ready, not
   federation-first.
-- Treat cross-domain integration as an explicit contract, not an internal import.
+- Do not import between bounded-context scopes. Use runtime APIs/events,
+  application composition, or a deliberately extracted stable contract in
+  `scope:shared`.
 
 Read the relevant detailed source before making architectural decisions:
 

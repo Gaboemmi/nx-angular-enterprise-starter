@@ -16,6 +16,10 @@ and `build` targets for `app`; Playwright supplies the `app-e2e` e2e target.
 
 - Run `npm run format` after implementation to apply the repository's Prettier
   rules before the remaining validation.
+- Run `npx nx check architecture-enforcement` when projects, tags, boundaries,
+  or generators changed.
+- Run `npx nx test architecture-enforcement` when the dependency policy or
+  scope registration changed.
 - Run lint and relevant tests.
 - Build affected applications or libraries; the current application command is
   `npx nx build app`.

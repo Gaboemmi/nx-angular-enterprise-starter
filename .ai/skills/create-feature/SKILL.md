@@ -8,8 +8,8 @@ Adding a business capability, route-level area, or feature library.
 
 1. If the capability has ambiguous language, rules, ownership, lifecycle, actors, or cross-context effects, run `discover-domain` before choosing code structure. Skip that procedure when the behavior and owner are already clear.
 2. Name the capability in domain language and confirm its owning domain; do not create a generic technical feature. A vertical is a cohesive bounded context, not a screen, route, or technical concern; record its clear owner.
-3. Decide the smallest shape that solves the need: component-local state for simple UI, or explicit domain, application, infrastructure, and presentation responsibilities when complexity justifies them.
-4. Create a tagged Nx library when a library boundary is needed. Use one `scope:*` tag and one responsibility `type:*` tag from `docs/architecture/enforcement.md`.
+3. Decide the smallest shape that solves the need: component-local state for simple UI, or explicit domain, application, infrastructure, and presentation responsibilities when complexity justifies them. The Architecture Matrix classifies boundaries; it does not require every cell.
+4. Confirm that the owning context is registered when its first Nx project boundary is introduced. If the application delivers it, use the shell generator, which registers the scope automatically; do not create a shell for a domain-only context. Create a tagged Nx library only when a library boundary is needed, using `scope:<bounded-context>` and one canonical `type:*` from `docs/architecture/enforcement.md`. Use `type:feature` for route/container behavior and `type:ui` for presentational domain components; do not create `type:presentation` or `type:data-access`.
 5. Keep the public entry point minimal. Do not let another feature import internal files; define an explicit contract when domains must communicate.
 6. Add only the supporting use cases, ports, mappers, datasource, store, or facade that have a concrete responsibility. Follow the respective skill when adding one.
 

@@ -1,5 +1,12 @@
 # Design System
 
+## Adoption status
+
+This document defines the target architecture. The Design System, Angular
+Aria/CDK integration, Storybook, and secondary entry points are not implemented
+yet. Its first Nx projects use `scope:shared,type:ui`; a dedicated scope requires
+evidence and a separate decision.
+
 ## Objective
 
 The project provides a single shared Enterprise Design System consumed by all

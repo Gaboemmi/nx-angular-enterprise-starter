@@ -87,7 +87,8 @@ Features are compiled and deployed together initially.
 
 Federated applications are not created unless an actual requirement justifies them.
 
-This keeps development, testing, local environments, CI/CD, dependency management, and deployments simpler during the early stages of a project.
+This keeps development, testing, local environments, CI/CD, dependency
+management, and deployments simpler during the early stages of a project.
 
 ---
 
@@ -111,24 +112,25 @@ Other features should not depend directly on its internal:
 - mappers;
 - implementation-specific services.
 
-Cross-domain interaction must happen through deliberate public contracts.
+Cross-domain interaction uses runtime APIs/events, application composition, or
+a deliberately extracted stable contract in `scope:shared`. It does not use a
+direct TypeScript dependency between business scopes.
 
 ### Explicit public APIs
 
-Each domain or feature exposes only the API intended for external consumers.
+Each project exposes only the API intended for consumers already allowed by the
+scope/type matrix.
 
 Internal implementation details remain private.
 
 Conceptually:
 
 ```text
-Feature A
-   │
-   │ public contract
-   ▼
-Feature B
+Feature A ─X→ Feature B public entry point
 
-✓ Allowed
+Direct cross-scope import: forbidden
+
+Feature A → runtime API/event/shared stable contract ← allowed integration
 ```
 
 instead of:

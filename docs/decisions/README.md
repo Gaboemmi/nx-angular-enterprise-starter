@@ -20,5 +20,6 @@ An ADR records **why** an architectural decision with a significant impact on th
 | [ADR-012](ADR-012-docs-and-specifications.md)           | Documentation and specifications responsibilities |
 | [ADR-013](ADR-013-agent-agnostic-ai-harness.md)         | Agent-agnostic AI Harness                         |
 | [ADR-015](ADR-015-provider-agnostic-feature-flags.md)   | Provider-agnostic feature flags                   |
-| [ADR-017](ADR-017-shell-library-pattern.md)             | Shell libraries own domain composition            |
 | [ADR-016](ADR-016-sonarqube-cloud-quality-gate.md)      | SonarQube Cloud quality gate                      |
+| [ADR-017](ADR-017-shell-library-pattern.md)             | Shell libraries own domain composition            |
+| [ADR-018](ADR-018-architecture-matrix-tags.md)          | Architecture Matrix and Nx tag identity           |

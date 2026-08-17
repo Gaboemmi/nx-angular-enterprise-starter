@@ -29,8 +29,9 @@ respective concerns.
 
 The workspace is analyzed as one SonarQube Cloud project. Nx remains the owner
 of library and domain granularity. Test targets produce LCOV reports in
-`coverage/app/lcov.info`, `coverage/core-ddd/lcov.info`, and
-`coverage/core-feature-flags/lcov.info`; add a report path to
+`coverage/app/lcov.info`, `coverage/core-ddd/lcov.info`,
+`coverage/core-feature-flags/lcov.info`, `coverage/core-i18n/lcov.info`, and
+`coverage/architecture-enforcement/lcov.info`; add a report path to
 `sonar-project.properties` whenever a new test target emits coverage.
 
 The Quality Gate is configured in SonarQube Cloud using Clean as You Code: no
@@ -57,13 +58,36 @@ baseline.
 Libraries use a scope tag and a responsibility tag:
 
 ```text
-scope:domain | scope:platform | scope:shared | scope:app
-type:domain | type:application | type:infrastructure | type:presentation |
-type:ui | type:util | type:platform | type:shell | type:feature
+scope:<bounded-context> | scope:platform | scope:shared | scope:app
+type:app | type:e2e | type:shell | type:feature | type:ui |
+type:application | type:domain | type:infrastructure | type:platform | type:util
 ```
 
 The application already has `scope:app,type:app`. New libraries must receive
 tags when created; untagged libraries are not accepted as an escape hatch.
+Business scopes are registered in
+`tools/architecture-enforcement/business-scopes.json`; do not add an ad hoc
+business `scope:*` tag manually. The shell generator registers a context and
+applies its exact scope.
+
+`presentation` is a conceptual responsibility, not a project tag. Use
+`type:shell` for context composition, `type:feature` for route/container
+behavior, and `type:ui` for presentational components. Keep external adapters,
+DTOs, datasources, and repository implementations under `type:infrastructure`;
+do not introduce `type:data-access` as a second name.
+
+Legal matrix cells are intentionally sparse:
+
+| Scope kind                | Allowed project types                                                       |
+| ------------------------- | --------------------------------------------------------------------------- |
+| `scope:app`               | `app`, `e2e`, `ui`, `util`                                                  |
+| `scope:platform`          | `platform`, `ui`, `util`                                                    |
+| `scope:shared`            | `domain`, `ui`, `util`                                                      |
+| `scope:<bounded-context>` | `shell`, `feature`, `ui`, `application`, `domain`, `infrastructure`, `util` |
+
+Business projects live below `libs/domains/<bounded-context>/`. The workspace
+check rejects invalid cells, reserved-scope labels below `libs/domains`, stale
+scope registrations, and dependency edges whose legality depends on both tags.
 
 ## Dependency policy
 
@@ -71,49 +95,66 @@ tags when created; untagged libraries are not accepted as an escape hatch.
 - `type:application` may use domain contracts and utilities.
 - `type:infrastructure` may implement domain/application contracts and use
   platform infrastructure.
-- `type:presentation` uses application APIs and UI/util libraries, never
-  infrastructure directly.
 - `type:app` imports only shells and cross-cutting platform/UI/util libraries.
 - `type:shell` is the domain composition boundary: it may load its own features,
-  and use application/domain/platform/UI/util APIs, but it does not access
-  infrastructure directly.
+  wire its infrastructure providers, and use application/domain/platform/UI/util
+  APIs.
 - `type:feature` may use application/domain/platform/UI/util APIs, but may not
   depend on another feature or on a shell.
+- `type:ui` may use domain types and UI/util libraries, but not application,
+  feature, shell, platform, or infrastructure projects.
+- `type:util` may depend only on another utility.
+- `type:e2e` exercises the application delivery surface and may use
+  testing-oriented app/platform/UI/util contracts, but it does not import a
+  business shell or feature.
 - Apps compose business capabilities through their shells; a shell owns routing,
   feature composition and route-level providers for one bounded context.
 
-These rules are enforced through `@nx/enforce-module-boundaries`. Public entry
-points are the only supported cross-domain imports. When a new valid dependency
-does not fit this matrix, change this document and the lint configuration in the
-same pull request.
+These rules are enforced through `@nx/enforce-module-boundaries` plus the
+repository-owned graph check for rules that depend on a scope/type combination.
+Public entry points encapsulate allowed project dependencies; they do not permit
+direct imports between bounded-context scopes. Cross-context collaboration uses
+runtime APIs/events, application composition, or a deliberately extracted stable
+contract in `scope:shared`. When a new valid dependency does not fit this matrix,
+change this document and the executable policy in the same pull request.
 
-### Current vertical-isolation limit
+### Vertical isolation
 
-The current `scope:*` tags classify broad repository areas (`domain`,
-`platform`, `shared`, and `app`); they do not identify individual business
-verticals. Consequently, the current matrix enforces layer and feature/shell
-direction, but cannot mechanically distinguish one future bounded context from
-another. The documented rule remains: do not import another vertical's
-internals, and use the smallest explicit public contract when integration is
-needed.
+Each registered bounded context receives a generated scope constraint. A
+business project may depend only on its own scope, `scope:platform`, and
+`scope:shared`. Type constraints then narrow that set independently. This makes
+`orders → billing`, `app → feature`, and `feature → feature` invalid even when
+their TypeScript APIs are public.
 
-Before adding per-vertical dependency constraints, record a decision that
-defines the vertical identity/tag scheme, approved contract shape, and when a
-bounded context needs separate Nx libraries. Update this policy, the ESLint
-matrix, generators, and negative-boundary tests together. Do not claim
-cross-vertical isolation is executable until that decision is implemented.
+The policy and its negative regression cases live in the
+`architecture-enforcement` Nx project. Run both targets after changing tags,
+the dependency matrix, or the shell generator:
+
+```bash
+npx nx check architecture-enforcement
+npx nx test architecture-enforcement
+```
+
+Nx project boundaries cannot distinguish conceptual folders inside one
+project. When a real vertical groups responsibilities in one library, preserve
+dependency direction through its local design and tests; split the project or
+add a focused lint rule only when a demonstrated violation requires it.
 
 ## Adoption status
 
 An accepted ADR records a decision, not necessarily its completed implementation.
 The current foundation has three states:
 
-| Area                                                 | State     | Next executable increment                                             |
-| ---------------------------------------------------- | --------- | --------------------------------------------------------------------- |
-| Nx boundaries                                        | Started   | Tag each new library and add boundary tests.                          |
-| Angular conventions                                  | Delegated | Use the official Angular Agent Skill.                                 |
-| Auth, i18n, OpenAPI, design system                   | Designed  | Implement a platform library and its test adapter before feature use. |
-| Runtime config, errors, observability, authorization | Designed  | Add the respective typed platform contracts.                          |
+| Area                                                 | State                  | Next executable increment                                             |
+| ---------------------------------------------------- | ---------------------- | --------------------------------------------------------------------- |
+| Nx boundaries                                        | Implemented foundation | Register each context at its first Nx boundary; extend rule tests.    |
+| Angular conventions                                  | Delegated              | Use the official Angular Agent Skill.                                 |
+| Feature flags and i18n base                          | Implemented foundation | Add provider adapters and application integration when required.      |
+| Auth, OpenAPI, design system                         | Designed               | Implement a platform library and its test adapter before feature use. |
+| Runtime config, errors, observability, authorization | Designed               | Add the respective typed platform contracts.                          |
+
+No business bounded context is registered yet. The executable matrix is ready
+for the first discovered vertical; examples such as `orders` are illustrative.
 
 ## Change protocol
 

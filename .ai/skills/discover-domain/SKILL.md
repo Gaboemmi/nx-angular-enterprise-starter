@@ -23,8 +23,10 @@ small changes with established ownership and rules.
    public contract before generating code.
 6. Translate the validated discovery into the smallest architecture that
    preserves the boundaries. A bounded context is the vertical; features and
-   responsibility layers live inside it. Follow `create-feature` only after
-   this ownership is explicit.
+   responsibility layers live inside it. Register `scope:<bounded-context>`
+   when its first Nx project boundary is introduced. If the application delivers
+   the context, create its shell and let the generator register that scope
+   automatically; a domain-only context does not need a shell.
 7. Treat events as domain facts. Introduce runtime events, asynchronous
    messaging, or event sourcing only when the feature requirements justify
    those mechanisms independently.

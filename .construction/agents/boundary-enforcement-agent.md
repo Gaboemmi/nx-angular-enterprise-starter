@@ -42,12 +42,12 @@ Before analyzing, read:
 ### Nx Tag and Boundary Configuration
 
 - Does `eslint.config.mjs` contain `@nx/enforce-module-boundaries` rules?
-- Are all scope tags (`scope:domain`, `scope:platform`, `scope:shared`,
-  `scope:app`) represented in the boundary matrix?
-- Are all type tags (`type:domain`, `type:application`, `type:infrastructure`,
-  `type:presentation`, `type:ui`, `type:util`, `type:platform`, `type:shell`,
-  `type:feature`) covered in dependency constraints?
-- Is every defined tag actually used by at least one library?
+- Are all registered `scope:<bounded-context>` tags and reserved scopes
+  (`scope:platform`, `scope:shared`, `scope:app`) represented in the boundary
+  matrix?
+- Are all canonical types from ADR-018 covered in dependency constraints and
+  legal scope/type cells?
+- Is every registered business scope actually used by at least one project?
 - Is every library tagged with both scope and responsibility tags?
 - Are `type:e2e` and other edge-case tags handled in the dependency matrix?
 

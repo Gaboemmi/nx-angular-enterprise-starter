@@ -1,10 +1,10 @@
 # CI
 
-El workflow de GitHub Actions en `.github/workflows/ci.yml` ejecuta las puertas
-de calidad base para cada cambio: lint, pruebas unitarias y compilación de los
-proyectos Nx. Cuando el repositorio configura SonarQube Cloud, también publica
-la cobertura LCOV y bloquea la integración si falla el Quality Gate de nuevo
-código.
+La CI está desactivada por defecto. La plantilla en
+`docs/templates/github-actions-ci.yml` ejecuta las puertas de calidad base para
+cada cambio cuando un consumidor la copia a `.github/workflows/ci.yml`. Cuando
+el repositorio configura SonarQube Cloud, también publica la cobertura LCOV y
+bloquea la integración si falla el Quality Gate de nuevo código.
 
 ## Principios
 

@@ -7,7 +7,9 @@ Translating meaningfully different representations, especially between an extern
 ## Steps
 
 1. Confirm a boundary needs protection. Do not create an identity mapper solely to satisfy a pattern.
-2. Name both sides explicitly, for example `TripDtoToTripMapper`, and keep it with the owning infrastructure or boundary code.
+2. Name both sides explicitly, for example `TripDtoToTripMapper`, and keep it
+   with the owning infrastructure or boundary code. Transport mappers belong to
+   `type:infrastructure` when that responsibility is a separate Nx project.
 3. Extend `Mapper<From, To>` from `@nx-angular-enterprise-starter/core/ddd` and implement a synchronous `map` method. Use `mapArray` for arrays.
 4. Translate naming, optionality, defaults, enums, and temporal semantics deliberately; reject or normalize invalid transport data at the appropriate boundary.
 5. Do not perform I/O, inject UI concerns, or embed business workflows in a mapper.

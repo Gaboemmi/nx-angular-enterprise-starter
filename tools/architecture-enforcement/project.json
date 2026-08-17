@@ -1,0 +1,27 @@
+{
+  "name": "architecture-enforcement",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "tools/architecture-enforcement/src",
+  "projectType": "library",
+  "tags": ["scope:shared", "type:util"],
+  "targets": {
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "eslint tools/architecture-enforcement tools/generators/shell"
+      }
+    },
+    "check": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "node tools/architecture-enforcement/src/validate-workspace.mjs"
+      }
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "node node_modules/vitest/vitest.mjs run tools/architecture-enforcement tools/generators/shell --coverage --coverage.reporter=lcovonly --coverage.reporter=text-summary --coverage.reportsDirectory=coverage/architecture-enforcement"
+      }
+    }
+  }
+}

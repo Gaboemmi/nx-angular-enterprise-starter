@@ -8,7 +8,10 @@ Feature-level client state must be shared, coordinated, derived, or reset beyond
 
 1. Identify the state owner first. Keep local UI state in components, navigation state in the Router, global state genuinely application-wide, and server data authoritative on the backend.
 2. Do not create a store for ephemeral component interaction, reactive form state, or a value determined by the route.
-3. Scope a feature store to the feature or route by default. Keep it concrete and feature-owned; do not add a generic base store.
+3. Scope a feature or route store to `type:feature` by default. Reusable
+   application state may move to `type:application` only when multiple entry
+   points in the same bounded context need one owner. Keep stores concrete; do
+   not add a generic base store.
 4. Model mutually exclusive asynchronous states with a discriminated union when needed.
 5. Define concurrency, cancellation, retry, freshness, invalidation, rollback, and tenant/user reset behaviour where applicable.
 6. Keep domain rules in domain/application code. A store or facade must not call a datasource directly.

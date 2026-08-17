@@ -13,16 +13,19 @@ simplest path the architecturally correct one.
 
 ## Current status
 
-The repository is in its foundation stage. The Angular application and the
-first framework-independent DDD primitives are implemented; the wider platform
-architecture is designed and documented, ready to be adopted incrementally.
+The repository is in its foundation stage. The Angular application, the first
+framework-independent DDD primitives, feature-flag and i18n foundations, and
+the executable Architecture Matrix are implemented. No real business bounded
+context is registered yet; names such as `orders` in the documentation are
+illustrative.
 
 | Area                                                                                                     | Status                 |
 | -------------------------------------------------------------------------------------------------------- | ---------------------- |
 | Nx workspace, standalone Angular application, strict TypeScript, `OnPush`, and zoneless compatibility    | Implemented            |
 | Nx project tags and ESLint dependency-boundary rules                                                     | Implemented foundation |
 | `UseCase` and `Mapper` primitives in `@nx-angular-enterprise-starter/core/ddd`                           | Implemented            |
-| DDD, authentication, authorization, i18n, date/time, OpenAPI, design system, and testing strategy        | Architecture defined   |
+| DDD, authentication, authorization, date/time, OpenAPI, design system, and testing strategy              | Architecture defined   |
+| Feature-flag and i18n provider-agnostic foundations                                                      | Implemented foundation |
 | Provider integrations for auth, Tolgee, OpenAPI, runtime configuration, observability, and design system | Not yet implemented    |
 
 An accepted ADR records a decision; it does not mean its technical integration
@@ -55,9 +58,9 @@ infrastructure -> implements domain or application contracts
 Not every feature needs every layer. A simple feature may keep local state,
 while a complex feature may expose a facade and separate use cases, ports,
 repositories, and mappers. The application composes domains and platform
-capabilities; cross-domain communication happens through public APIs, explicit
-contracts, routes, or events when justified—not through internal implementation
-imports.
+capabilities. Bounded contexts do not import one another directly; collaboration
+uses runtime APIs/events, application composition, or a deliberately extracted
+stable contract in `scope:shared`.
 
 Read the [domain-driven architecture guide](docs/architecture/ddd.md) before
 making structural decisions. For new or ambiguous business capabilities, use
@@ -69,14 +72,14 @@ context relationships before choosing the Nx structure.
 Libraries receive both a scope tag and a responsibility tag:
 
 ```text
-scope:domain | scope:platform | scope:shared | scope:app
-type:domain | type:application | type:infrastructure | type:presentation |
-type:ui | type:util | type:platform | type:shell | type:feature
+scope:<bounded-context> | scope:platform | scope:shared | scope:app
+type:app | type:e2e | type:shell | type:feature | type:ui |
+type:application | type:domain | type:infrastructure | type:platform | type:util
 ```
 
 Nx and ESLint enforce the principal dependency directions. For example, domain
-libraries may depend only on domain libraries and utilities; presentation may
-use application APIs and UI/util libraries, but never infrastructure directly.
+libraries may depend only on domain libraries and utilities; feature and UI
+projects never depend on infrastructure directly.
 The full policy is in [executable architecture](docs/architecture/enforcement.md).
 
 ## Platform architecture

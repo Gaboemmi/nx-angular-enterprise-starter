@@ -10,11 +10,6 @@
       "type": "string",
       "description": "Bounded-context name, for example orders.",
       "x-prompt": "What is the bounded-context name?"
-    },
-    "directory": {
-      "type": "string",
-      "description": "Directory containing bounded contexts.",
-      "default": "libs/domains"
     }
   },
   "required": ["name"],

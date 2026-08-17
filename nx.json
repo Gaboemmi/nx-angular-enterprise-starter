@@ -18,7 +18,8 @@
         "default",
         "^default",
         "{workspaceRoot}/eslint.config.mjs",
-        "{workspaceRoot}/tools/eslint-rules/**/*"
+        "{workspaceRoot}/tools/eslint-rules/**/*",
+        "{workspaceRoot}/tools/architecture-enforcement/**/*"
       ]
     },
     "@angular/build:unit-test": {

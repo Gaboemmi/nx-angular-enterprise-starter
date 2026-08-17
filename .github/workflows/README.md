@@ -17,6 +17,6 @@ When adopting the starter, choose the CI provider deliberately:
 Agents follow [the CI adoption procedure](../../.ai/skills/adopt-ci/SKILL.md)
 when a provider is selected.
 
-The template runs lint, unit tests and builds for all projects on pull requests
-and pushes to `main`. It also runs SonarQube Cloud only when its repository
-variables and secret are configured.
+The template validates the architecture policy, then runs lint, unit tests and
+builds for all projects on pull requests and pushes to `main`. It also runs
+SonarQube Cloud only when its repository variables and secret are configured.
