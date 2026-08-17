@@ -4,16 +4,11 @@
   "projectType": "application",
   "prefix": "app",
   "sourceRoot": "apps/app/src",
-  "tags": [
-    "scope:app",
-    "type:app"
-  ],
+  "tags": ["scope:app", "type:app"],
   "targets": {
     "build": {
       "executor": "@angular/build:application",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
         "outputPath": "dist/apps/app",
@@ -26,9 +21,7 @@
             "input": "apps/app/public"
           }
         ],
-        "styles": [
-          "apps/app/src/styles.scss"
-        ]
+        "styles": ["apps/app/src/styles.scss"]
       },
       "configurations": {
         "production": {
@@ -74,10 +67,7 @@
       "options": {
         "watch": false,
         "coverage": true,
-        "coverageReporters": [
-          "lcovonly",
-          "text-summary"
-        ]
+        "coverageReporters": ["lcovonly", "text-summary"]
       }
     },
     "serve-static": {

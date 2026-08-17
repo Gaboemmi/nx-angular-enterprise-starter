@@ -91,23 +91,23 @@ No se utilizará Angular Material como base.
 
 # Responsabilidades
 
-| Necesidad | Solución |
-|-----------|----------|
-| Button | HTML nativo |
-| Input | HTML nativo |
-| Checkbox | HTML nativo |
-| Link | HTML nativo |
-| Badge | HTML |
-| Tabs | Angular Aria |
-| Accordion | Angular Aria |
-| Menu | Angular Aria |
-| Select | Angular Aria + CDK Overlay |
-| MultiSelect | Angular Aria + CDK Overlay |
-| Dialog | Angular CDK |
-| Tooltip | Angular CDK |
-| Overlay | Angular CDK |
-| Drag & Drop | Angular CDK |
-| Virtual Scroll | Angular CDK |
+| Necesidad      | Solución                   |
+| -------------- | -------------------------- |
+| Button         | HTML nativo                |
+| Input          | HTML nativo                |
+| Checkbox       | HTML nativo                |
+| Link           | HTML nativo                |
+| Badge          | HTML                       |
+| Tabs           | Angular Aria               |
+| Accordion      | Angular Aria               |
+| Menu           | Angular Aria               |
+| Select         | Angular Aria + CDK Overlay |
+| MultiSelect    | Angular Aria + CDK Overlay |
+| Dialog         | Angular CDK                |
+| Tooltip        | Angular CDK                |
+| Overlay        | Angular CDK                |
+| Drag & Drop    | Angular CDK                |
+| Virtual Scroll | Angular CDK                |
 
 La regla general será:
 
@@ -132,13 +132,13 @@ Siempre que sea posible se utilizarán elementos HTML nativos.
 Correcto
 
 ```html
-<button aeButton>
+<button aeButton></button>
 ```
 
 Incorrecto
 
 ```html
-<ae-button>
+<ae-button></ae-button>
 ```
 
 La semántica nativa es parte de la accesibilidad.
@@ -153,10 +153,8 @@ No existen componentes como:
 
 ```html
 <ae-div>
-
-<ae-container>
-
-<ae-span>
+  <ae-container> <ae-span></ae-span></ae-container
+></ae-div>
 ```
 
 Un componente entra en el Design System únicamente cuando aporta:
@@ -221,15 +219,13 @@ Nunca valores hardcodeados.
 Correcto
 
 ```css
-background:
-var(--ae-button-primary-background);
+background: var(--ae-button-primary-background);
 ```
 
 Incorrecto
 
 ```css
-background:
-#2457d6;
+background: #2457d6;
 ```
 
 ---

@@ -31,4 +31,3 @@ configuration fails startup with an actionable, safe error.
 
 Tests provide configuration through the platform contract. No test depends on a
 deployment asset or process environment.
-

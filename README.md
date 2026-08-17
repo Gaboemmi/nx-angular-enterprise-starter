@@ -17,13 +17,13 @@ The repository is in its foundation stage. The Angular application and the
 first framework-independent DDD primitives are implemented; the wider platform
 architecture is designed and documented, ready to be adopted incrementally.
 
-| Area | Status |
-| --- | --- |
-| Nx workspace, standalone Angular application, strict TypeScript, `OnPush`, and zoneless compatibility | Implemented |
-| Nx project tags and ESLint dependency-boundary rules | Implemented foundation |
-| `UseCase` and `Mapper` primitives in `@nx-angular-enterprise-starter/core/ddd` | Implemented |
-| DDD, authentication, authorization, i18n, date/time, OpenAPI, design system, and testing strategy | Architecture defined |
-| Provider integrations for auth, Tolgee, OpenAPI, runtime configuration, observability, and design system | Not yet implemented |
+| Area                                                                                                     | Status                 |
+| -------------------------------------------------------------------------------------------------------- | ---------------------- |
+| Nx workspace, standalone Angular application, strict TypeScript, `OnPush`, and zoneless compatibility    | Implemented            |
+| Nx project tags and ESLint dependency-boundary rules                                                     | Implemented foundation |
+| `UseCase` and `Mapper` primitives in `@nx-angular-enterprise-starter/core/ddd`                           | Implemented            |
+| DDD, authentication, authorization, i18n, date/time, OpenAPI, design system, and testing strategy        | Architecture defined   |
+| Provider integrations for auth, Tolgee, OpenAPI, runtime configuration, observability, and design system | Not yet implemented    |
 
 An accepted ADR records a decision; it does not mean its technical integration
 is already complete. See [executable architecture](docs/architecture/enforcement.md)

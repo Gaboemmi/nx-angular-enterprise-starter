@@ -16,9 +16,20 @@ import { CommonModule } from '@angular/common';
     <style>
       html {
         -webkit-text-size-adjust: 100%;
-        font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-          'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
-          'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+        font-family:
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          'Segoe UI',
+          Roboto,
+          'Helvetica Neue',
+          Arial,
+          'Noto Sans',
+          sans-serif,
+          'Apple Color Emoji',
+          'Segoe UI Emoji',
+          'Segoe UI Symbol',
           'Noto Color Emoji';
         line-height: 1.5;
         tab-size: 4;
@@ -53,8 +64,9 @@ import { CommonModule } from '@angular/common';
         text-decoration: inherit;
       }
       pre {
-        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-          'Liberation Mono', 'Courier New', monospace;
+        font-family:
+          ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
+          monospace;
       }
       svg {
         display: block;
@@ -68,13 +80,17 @@ import { CommonModule } from '@angular/common';
         background-color: rgba(55, 65, 81, 1);
         border-radius: 0.25rem;
         color: rgba(229, 231, 235, 1);
-        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-          'Liberation Mono', 'Courier New', monospace;
+        font-family:
+          ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
+          monospace;
         overflow: auto;
         padding: 0.5rem 0.75rem;
       }
       .shadow {
-        box-shadow: 0 0 #0000, 0 0 #0000, 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+        box-shadow:
+          0 0 #0000,
+          0 0 #0000,
+          0 10px 15px -3px rgba(0, 0, 0, 0.1),
           0 4px 6px -2px rgba(0, 0, 0, 0.05);
       }
       .rounded {
@@ -186,8 +202,17 @@ import { CommonModule } from '@angular/common';
         display: flex;
         margin-top: 1rem;
         padding: 1rem;
-        transition-property: background-color, border-color, color, fill, stroke,
-          opacity, box-shadow, transform, filter, backdrop-filter,
+        transition-property:
+          background-color,
+          border-color,
+          color,
+          fill,
+          stroke,
+          opacity,
+          box-shadow,
+          transform,
+          filter,
+          backdrop-filter,
           -webkit-backdrop-filter;
         transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
         transition-duration: 150ms;
@@ -196,8 +221,17 @@ import { CommonModule } from '@angular/common';
       .list-item-link svg:first-child {
         margin-right: 1rem;
         height: 1.5rem;
-        transition-property: background-color, border-color, color, fill, stroke,
-          opacity, box-shadow, transform, filter, backdrop-filter,
+        transition-property:
+          background-color,
+          border-color,
+          color,
+          fill,
+          stroke,
+          opacity,
+          box-shadow,
+          transform,
+          filter,
+          backdrop-filter,
           -webkit-backdrop-filter;
         transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
         transition-duration: 150ms;
@@ -206,8 +240,17 @@ import { CommonModule } from '@angular/common';
       .list-item-link > span {
         flex-grow: 1;
         font-weight: 400;
-        transition-property: background-color, border-color, color, fill, stroke,
-          opacity, box-shadow, transform, filter, backdrop-filter,
+        transition-property:
+          background-color,
+          border-color,
+          color,
+          fill,
+          stroke,
+          opacity,
+          box-shadow,
+          transform,
+          filter,
+          backdrop-filter,
           -webkit-backdrop-filter;
         transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
       }
@@ -218,8 +261,17 @@ import { CommonModule } from '@angular/common';
         font-size: 0.75rem;
         font-weight: 300;
         line-height: 1rem;
-        transition-property: background-color, border-color, color, fill, stroke,
-          opacity, box-shadow, transform, filter, backdrop-filter,
+        transition-property:
+          background-color,
+          border-color,
+          color,
+          fill,
+          stroke,
+          opacity,
+          box-shadow,
+          transform,
+          filter,
+          backdrop-filter,
           -webkit-backdrop-filter;
         transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
       }
@@ -246,16 +298,34 @@ import { CommonModule } from '@angular/common';
         padding: 1.5rem 2rem;
         margin-bottom: 2rem;
         transition-duration: 300ms;
-        transition-property: background-color, border-color, color, fill, stroke,
-          opacity, box-shadow, transform, filter, backdrop-filter,
+        transition-property:
+          background-color,
+          border-color,
+          color,
+          fill,
+          stroke,
+          opacity,
+          box-shadow,
+          transform,
+          filter,
+          backdrop-filter,
           -webkit-backdrop-filter;
         transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
         align-items: center;
         display: flex;
       }
       .button-pill svg {
-        transition-property: background-color, border-color, color, fill, stroke,
-          opacity, box-shadow, transform, filter, backdrop-filter,
+        transition-property:
+          background-color,
+          border-color,
+          color,
+          fill,
+          stroke,
+          opacity,
+          box-shadow,
+          transform,
+          filter,
+          backdrop-filter,
           -webkit-backdrop-filter;
         transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
         transition-duration: 150ms;
@@ -385,8 +455,17 @@ import { CommonModule } from '@angular/common';
         font-weight: 400;
         padding: 0.5rem;
         cursor: pointer;
-        transition-property: background-color, border-color, color, fill, stroke,
-          opacity, box-shadow, transform, filter, backdrop-filter,
+        transition-property:
+          background-color,
+          border-color,
+          color,
+          fill,
+          stroke,
+          opacity,
+          box-shadow,
+          transform,
+          filter,
+          backdrop-filter,
           -webkit-backdrop-filter;
         transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
         transition-duration: 150ms;
@@ -423,7 +502,7 @@ import { CommonModule } from '@angular/common';
         }
         #middle-content {
           grid-template-columns: repeat(2, minmax(0, 1fr));
-          gap: 4rem
+          gap: 4rem;
         }
       }
     </style>
@@ -473,137 +552,163 @@ import { CommonModule } from '@angular/common';
         </div>
         <!--  MIDDLE CONTENT  -->
         <div id="middle-content">
-        <div id="middle-left-content">
-          <div id="learning-materials" class="rounded shadow">
-            <h2>Learning materials</h2>
-            <a href="https://nx.dev/getting-started/intro?utm_source=nx-project" target="_blank" rel="noreferrer" class="list-item-link">
-              <svg
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
+          <div id="middle-left-content">
+            <div id="learning-materials" class="rounded shadow">
+              <h2>Learning materials</h2>
+              <a
+                href="https://nx.dev/getting-started/intro?utm_source=nx-project"
+                target="_blank"
+                rel="noreferrer"
+                class="list-item-link"
               >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-                />
-              </svg>
-              <span>
-                Documentation
-                <span> Everything is in there </span>
-              </span>
-              <svg
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
+                <svg
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                  />
+                </svg>
+                <span>
+                  Documentation
+                  <span> Everything is in there </span>
+                </span>
+                <svg
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </a>
+              <a
+                href="https://nx.dev/blog?utm_source=nx-project"
+                target="_blank"
+                rel="noreferrer"
+                class="list-item-link"
               >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 5l7 7-7 7"
-                />
-              </svg>
-            </a>
-            <a href="https://nx.dev/blog?utm_source=nx-project" target="_blank" rel="noreferrer" class="list-item-link">
-              <svg
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
+                <svg
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"
+                  />
+                </svg>
+                <span>
+                  Blog
+                  <span> Changelog, features & events </span>
+                </span>
+                <svg
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </a>
+              <a
+                href="https://www.youtube.com/@NxDevtools/videos?utm_source=nx-project&sub_confirmation=1"
+                target="_blank"
+                rel="noreferrer"
+                class="list-item-link"
               >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"
-                />
-              </svg>
-              <span>
-                Blog
-                <span> Changelog, features & events </span>
-              </span>
-              <svg
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
+                <svg
+                  role="img"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <title>YouTube</title>
+                  <path
+                    d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"
+                  />
+                </svg>
+                <span>
+                  YouTube channel
+                  <span> Nx Show, talks & tutorials </span>
+                </span>
+                <svg
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </a>
+              <a
+                href="https://nx.dev/getting-started/tutorials/angular-standalone-tutorial?utm_source=nx-project"
+                target="_blank"
+                rel="noreferrer"
+                class="list-item-link"
               >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 5l7 7-7 7"
-                />
-              </svg>
-            </a>
-            <a href="https://www.youtube.com/@NxDevtools/videos?utm_source=nx-project&sub_confirmation=1" target="_blank" rel="noreferrer" class="list-item-link">
-              <svg
-                role="img"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <title>YouTube</title>
-                <path
-                  d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"
-                />
-              </svg>
-              <span>
-                YouTube channel
-                <span> Nx Show, talks & tutorials </span>
-              </span>
-              <svg
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 5l7 7-7 7"
-                />
-              </svg>
-            </a>
-            <a href="https://nx.dev/getting-started/tutorials/angular-standalone-tutorial?utm_source=nx-project" target="_blank" rel="noreferrer" class="list-item-link">
-              <svg
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"
-                />
-              </svg>
-              <span>
-                Interactive tutorials
-                <span> Create an app, step-by-step </span>
-              </span>
-              <svg
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 5l7 7-7 7"
-                />
-              </svg>
-            </a>
+                <svg
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"
+                  />
+                </svg>
+                <span>
+                  Interactive tutorials
+                  <span> Create an app, step-by-step </span>
+                </span>
+                <svg
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </a>
             </div>
-            <a id="nx-repo" class="button-pill rounded shadow" href="https://github.com/nrwl/nx?utm_source=nx-project" target="_blank" rel="noreferrer">
+            <a
+              id="nx-repo"
+              class="button-pill rounded shadow"
+              href="https://github.com/nrwl/nx?utm_source=nx-project"
+              target="_blank"
+              rel="noreferrer"
+            >
               <svg
                 fill="currentColor"
                 role="img"
@@ -621,7 +726,12 @@ import { CommonModule } from '@angular/common';
             </a>
           </div>
           <div id="other-links">
-            <a class="button-pill rounded shadow nx-console" href="https://marketplace.visualstudio.com/items?itemName=nrwl.angular-console&utm_source=nx-project" target="_blank" rel="noreferrer">
+            <a
+              class="button-pill rounded shadow nx-console"
+              href="https://marketplace.visualstudio.com/items?itemName=nrwl.angular-console&utm_source=nx-project"
+              target="_blank"
+              rel="noreferrer"
+            >
               <svg
                 fill="currentColor"
                 role="img"
@@ -644,26 +754,31 @@ import { CommonModule } from '@angular/common';
               target="_blank"
               rel="noreferrer"
             >
-              <svg
-                  height="48"
-                  width="48"
-                  viewBox="20 20 60 60"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="m22.5 22.5h60v60h-60z" />
-                  <g fill="#fff">
-                    <path d="m29.03 71.25h22.5v3.75h-22.5z" />
-                    <path d="m28.09 38 1.67-1.58a1.88 1.88 0 0 0 1.47.87c.64 0 1.06-.44 1.06-1.31v-5.98h2.58v6a3.48 3.48 0 0 1 -.87 2.6 3.56 3.56 0 0 1 -2.57.95 3.84 3.84 0 0 1 -3.34-1.55z" />
-                    <path d="m36 30h7.53v2.19h-5v1.44h4.49v2h-4.42v1.49h5v2.21h-7.6z" />
-                    <path d="m47.23 32.29h-2.8v-2.29h8.21v2.27h-2.81v7.1h-2.6z" />
-                    <path d="m29.13 43.08h4.42a3.53 3.53 0 0 1 2.55.83 2.09 2.09 0 0 1 .6 1.53 2.16 2.16 0 0 1 -1.44 2.09 2.27 2.27 0 0 1 1.86 2.29c0 1.61-1.31 2.59-3.55 2.59h-4.44zm5 2.89c0-.52-.42-.8-1.18-.8h-1.29v1.64h1.24c.79 0 1.25-.26 1.25-.81zm-.9 2.66h-1.57v1.73h1.62c.8 0 1.24-.31 1.24-.86 0-.5-.4-.87-1.27-.87z" />
-                    <path d="m38 43.08h4.1a4.19 4.19 0 0 1 3 1 2.93 2.93 0 0 1 .9 2.19 3 3 0 0 1 -1.93 2.89l2.24 3.27h-3l-1.88-2.84h-.87v2.84h-2.56zm4 4.5c.87 0 1.39-.43 1.39-1.11 0-.75-.54-1.12-1.4-1.12h-1.44v2.26z" />
-                    <path d="m49.59 43h2.5l4 9.44h-2.79l-.67-1.69h-3.63l-.67 1.69h-2.71zm2.27 5.73-1-2.65-1.06 2.65z" />
-                    <path d="m56.46 43.05h2.6v9.37h-2.6z" />
-                    <path d="m60.06 43.05h2.42l3.37 5v-5h2.57v9.37h-2.26l-3.53-5.14v5.14h-2.57z" />
-                    <path d="m68.86 51 1.45-1.73a4.84 4.84 0 0 0 3 1.13c.71 0 1.08-.24 1.08-.65 0-.4-.31-.6-1.59-.91-2-.46-3.53-1-3.53-2.93 0-1.74 1.37-3 3.62-3a5.89 5.89 0 0 1 3.86 1.25l-1.26 1.84a4.63 4.63 0 0 0 -2.62-.92c-.63 0-.94.25-.94.6 0 .42.32.61 1.63.91 2.14.46 3.44 1.16 3.44 2.91 0 1.91-1.51 3-3.79 3a6.58 6.58 0 0 1 -4.35-1.5z" />
-                  </g>
-                </svg>
+              <svg height="48" width="48" viewBox="20 20 60 60" xmlns="http://www.w3.org/2000/svg">
+                <path d="m22.5 22.5h60v60h-60z" />
+                <g fill="#fff">
+                  <path d="m29.03 71.25h22.5v3.75h-22.5z" />
+                  <path
+                    d="m28.09 38 1.67-1.58a1.88 1.88 0 0 0 1.47.87c.64 0 1.06-.44 1.06-1.31v-5.98h2.58v6a3.48 3.48 0 0 1 -.87 2.6 3.56 3.56 0 0 1 -2.57.95 3.84 3.84 0 0 1 -3.34-1.55z"
+                  />
+                  <path d="m36 30h7.53v2.19h-5v1.44h4.49v2h-4.42v1.49h5v2.21h-7.6z" />
+                  <path d="m47.23 32.29h-2.8v-2.29h8.21v2.27h-2.81v7.1h-2.6z" />
+                  <path
+                    d="m29.13 43.08h4.42a3.53 3.53 0 0 1 2.55.83 2.09 2.09 0 0 1 .6 1.53 2.16 2.16 0 0 1 -1.44 2.09 2.27 2.27 0 0 1 1.86 2.29c0 1.61-1.31 2.59-3.55 2.59h-4.44zm5 2.89c0-.52-.42-.8-1.18-.8h-1.29v1.64h1.24c.79 0 1.25-.26 1.25-.81zm-.9 2.66h-1.57v1.73h1.62c.8 0 1.24-.31 1.24-.86 0-.5-.4-.87-1.27-.87z"
+                  />
+                  <path
+                    d="m38 43.08h4.1a4.19 4.19 0 0 1 3 1 2.93 2.93 0 0 1 .9 2.19 3 3 0 0 1 -1.93 2.89l2.24 3.27h-3l-1.88-2.84h-.87v2.84h-2.56zm4 4.5c.87 0 1.39-.43 1.39-1.11 0-.75-.54-1.12-1.4-1.12h-1.44v2.26z"
+                  />
+                  <path
+                    d="m49.59 43h2.5l4 9.44h-2.79l-.67-1.69h-3.63l-.67 1.69h-2.71zm2.27 5.73-1-2.65-1.06 2.65z"
+                  />
+                  <path d="m56.46 43.05h2.6v9.37h-2.6z" />
+                  <path d="m60.06 43.05h2.42l3.37 5v-5h2.57v9.37h-2.26l-3.53-5.14v5.14h-2.57z" />
+                  <path
+                    d="m68.86 51 1.45-1.73a4.84 4.84 0 0 0 3 1.13c.71 0 1.08-.24 1.08-.65 0-.4-.31-.6-1.59-.91-2-.46-3.53-1-3.53-2.93 0-1.74 1.37-3 3.62-3a5.89 5.89 0 0 1 3.86 1.25l-1.26 1.84a4.63 4.63 0 0 0 -2.62-.92c-.63 0-.94.25-.94.6 0 .42.32.61 1.63.91 2.14.46 3.44 1.16 3.44 2.91 0 1.91-1.51 3-3.79 3a6.58 6.58 0 0 1 -4.35-1.5z"
+                  />
+                </g>
+              </svg>
               <span>
                 Install Nx Console for JetBrains
                 <span>Available for WebStorm, Intellij IDEA Ultimate and more!</span>
@@ -671,28 +786,42 @@ import { CommonModule } from '@angular/common';
             </a>
             <div id="nx-cloud" class="rounded shadow">
               <div>
-                <svg id="nx-cloud-logo" role="img" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" fill="transparent" viewBox="0 0 24 24">
-                  <path stroke-width="2" d="M23 3.75V6.5c-3.036 0-5.5 2.464-5.5 5.5s-2.464 5.5-5.5 5.5-5.5 2.464-5.5 5.5H3.75C2.232 23 1 21.768 1 20.25V3.75C1 2.232 2.232 1 3.75 1h16.5C21.768 1 23 2.232 23 3.75Z" />
-                  <path stroke-width="2" d="M23 6v14.1667C23 21.7307 21.7307 23 20.1667 23H6c0-3.128 2.53867-5.6667 5.6667-5.6667 3.128 0 5.6666-2.5386 5.6666-5.6666C17.3333 8.53867 19.872 6 23 6Z" />
+                <svg
+                  id="nx-cloud-logo"
+                  role="img"
+                  xmlns="http://www.w3.org/2000/svg"
+                  stroke="currentColor"
+                  fill="transparent"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-width="2"
+                    d="M23 3.75V6.5c-3.036 0-5.5 2.464-5.5 5.5s-2.464 5.5-5.5 5.5-5.5 2.464-5.5 5.5H3.75C2.232 23 1 21.768 1 20.25V3.75C1 2.232 2.232 1 3.75 1h16.5C21.768 1 23 2.232 23 3.75Z"
+                  />
+                  <path
+                    stroke-width="2"
+                    d="M23 6v14.1667C23 21.7307 21.7307 23 20.1667 23H6c0-3.128 2.53867-5.6667 5.6667-5.6667 3.128 0 5.6666-2.5386 5.6666-5.6666C17.3333 8.53867 19.872 6 23 6Z"
+                  />
                 </svg>
                 <h2>
                   Nx Cloud
-                  <span>
-                    Enable faster CI & better DX
-                  </span>
+                  <span> Enable faster CI & better DX </span>
                 </h2>
               </div>
-              <p>
-                You can activate distributed tasks executions and caching by
-                running:
-              </p>
+              <p>You can activate distributed tasks executions and caching by running:</p>
               <pre>nx connect</pre>
-              <a href="https://nx.dev/nx-cloud?utm_source=nx-project" target="_blank" rel="noreferrer"> What is Nx Cloud? </a>
+              <a
+                href="https://nx.dev/nx-cloud?utm_source=nx-project"
+                target="_blank"
+                rel="noreferrer"
+              >
+                What is Nx Cloud?
+              </a>
             </div>
           </div>
         </div>
         <!--  COMMANDS  -->
-                <div id="commands" class="rounded shadow">
+        <div id="commands" class="rounded shadow">
           <h2>Next steps</h2>
           <p>Here are some things you can do with Nx:</p>
           <details>

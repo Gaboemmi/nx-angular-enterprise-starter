@@ -6,12 +6,16 @@ and `build` targets for `app`; Playwright supplies the `app-e2e` e2e target.
 
 ## Normal code change
 
+- Run `npm run format` after implementation to apply the repository's Prettier
+  rules before linting or testing.
 - Run the affected project's lint target, for example `npx nx lint app`.
 - Run its unit tests when behavior changes, for example `npx nx test app`.
 - Review the generated diff for unintended changes.
 
 ## Architectural or configuration change
 
+- Run `npm run format` after implementation to apply the repository's Prettier
+  rules before the remaining validation.
 - Run lint and relevant tests.
 - Build affected applications or libraries; the current application command is
   `npx nx build app`.

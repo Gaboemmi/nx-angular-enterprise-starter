@@ -12,4 +12,3 @@ configuration belong to infrastructure and deployment configuration.
 Unexpected failures are reported once at their appropriate boundary. Expected
 validation and authorization outcomes are modeled normally rather than reported
 as application crashes. Tests use a no-op or recording adapter.
-

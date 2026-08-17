@@ -19,13 +19,13 @@ Components express user intent. They must not coordinate complex application wor
 
 Each meaningful piece of state has one owner. Prefer the narrowest scope that preserves the required behaviour:
 
-| State | Owner | Examples |
-| --- | --- | --- |
-| Local UI | Component or small component tree | Dialog visibility, temporary form interaction, ephemeral tab. |
-| Feature | Feature store | Loaded entities, feature errors, pagination, workflow progress. |
-| Navigation | Router | Route params, query params, fragments and route data. |
-| Global | Root application service | Authenticated identity, active tenant, locale, runtime configuration. |
-| Server | Backend | Authoritative business data. |
+| State      | Owner                             | Examples                                                              |
+| ---------- | --------------------------------- | --------------------------------------------------------------------- |
+| Local UI   | Component or small component tree | Dialog visibility, temporary form interaction, ephemeral tab.         |
+| Feature    | Feature store                     | Loaded entities, feature errors, pagination, workflow progress.       |
+| Navigation | Router                            | Route params, query params, fragments and route data.                 |
+| Global     | Root application service          | Authenticated identity, active tenant, locale, runtime configuration. |
+| Server     | Backend                           | Authoritative business data.                                          |
 
 Do not create a feature store for state that belongs to one component or has a short lifecycle. Reactive forms own their form state unless a deliberate feature-level workflow needs a projection of it.
 

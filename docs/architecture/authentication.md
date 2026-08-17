@@ -100,10 +100,7 @@ For example:
 
 ```ts
 export interface AuthState {
-  readonly status:
-    | 'initializing'
-    | 'authenticated'
-    | 'unauthenticated';
+  readonly status: 'initializing' | 'authenticated' | 'unauthenticated';
 
   readonly user: AuthUser | null;
 }

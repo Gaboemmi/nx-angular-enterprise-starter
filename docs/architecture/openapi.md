@@ -46,4 +46,3 @@ provider-specific authentication logic.
 Validate generated code in CI and test mappings at the boundary. Contract tests
 focus on compatibility and expected payload semantics; feature tests use ports
 or deterministic repository doubles rather than generated clients directly.
-

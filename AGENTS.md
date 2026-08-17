@@ -14,6 +14,8 @@ is evolving from a generated application into a domain-oriented modular monolith
 - Prefer rules enforced by Nx, ESLint, TypeScript, tests, or CI over prose.
 - Before an architectural or configuration change, read the relevant `.ai/` map
   and linked documentation.
+- After implementing any code or configuration change, run `npm run format`
+  before the remaining validation steps.
 - Validate the affected scope and review the final diff before considering work
   complete.
 

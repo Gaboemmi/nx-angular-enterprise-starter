@@ -2,7 +2,15 @@
   "name": "@nx-angular-enterprise-starter/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "format": "nx format:write --all",
+    "format:check": "nx format:check --all",
+    "prepare": "husky",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,cjs,mjs,ts,cts,mts,html,css,scss,json,jsonc,md,yml,yaml}": "prettier --write"
+  },
   "private": true,
   "dependencies": {
     "@angular/common": "~22.0.4",
@@ -39,8 +47,10 @@
     "eslint": "^9.8.0",
     "eslint-config-prettier": "^10.0.0",
     "eslint-plugin-playwright": "^1.6.2",
+    "husky": "^9.1.7",
     "jsdom": "^27.1.0",
     "jsonc-eslint-parser": "^2.1.0",
+    "lint-staged": "^17.3.0",
     "ng-packagr": "~22.0.0",
     "nx": "23.1.1",
     "postcss": "^8.4.5",

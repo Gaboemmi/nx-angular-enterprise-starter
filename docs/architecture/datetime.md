@@ -8,13 +8,13 @@ silently treated as the same thing.
 
 ## Temporal types
 
-| Meaning | Example | Rule |
-| --- | --- | --- |
-| `Instant` | `2026-08-11T18:30:00Z` | An absolute moment; store and exchange in UTC. |
-| `LocalDate` | `2026-08-11` | A calendar date with no time or timezone. |
-| `LocalTime` | `09:30` | A wall-clock time with no date or timezone. |
-| `LocalDateTime` | `2026-08-11T09:30` | Local wall-clock date/time; not an instant. |
-| `TimeZone` | `Europe/Madrid` | An IANA timezone used to resolve or display values. |
+| Meaning         | Example                | Rule                                                |
+| --------------- | ---------------------- | --------------------------------------------------- |
+| `Instant`       | `2026-08-11T18:30:00Z` | An absolute moment; store and exchange in UTC.      |
+| `LocalDate`     | `2026-08-11`           | A calendar date with no time or timezone.           |
+| `LocalTime`     | `09:30`                | A wall-clock time with no date or timezone.         |
+| `LocalDateTime` | `2026-08-11T09:30`     | Local wall-clock date/time; not an instant.         |
+| `TimeZone`      | `Europe/Madrid`        | An IANA timezone used to resolve or display values. |
 
 `Date` and ISO strings are transport/runtime representations, not sufficient
 domain semantics on their own.
@@ -44,4 +44,3 @@ it does not change the represented instant.
 Tests use an explicit timezone and fixed clock. Cover DST transitions, calendar
 date preservation, serialization, and the distinction between user timezone and
 business timezone.
-

@@ -31,4 +31,3 @@ tenant-scoped state and requires permission resolution to be refreshed.
 
 Provide deterministic test doubles for identity, tenant and permissions. Tests
 must model permitted and denied outcomes without a real identity provider.
-
