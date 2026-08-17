@@ -35,10 +35,10 @@ export default async function shellGenerator(
     linter: 'eslint',
     skipFormat: true,
     skipModule: true,
-    standalone: false,
+    standalone: true,
     style: 'scss',
     tags: 'scope:domain,type:shell',
-    unitTestRunner: 'none',
+    unitTestRunner: 'vitest-angular',
   });
 
   const project = readProjectConfiguration(tree, projectName);

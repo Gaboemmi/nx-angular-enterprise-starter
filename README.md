@@ -69,7 +69,7 @@ Libraries receive both a scope tag and a responsibility tag:
 ```text
 scope:domain | scope:platform | scope:shared | scope:app
 type:domain | type:application | type:infrastructure | type:presentation |
-type:ui | type:util | type:platform
+type:ui | type:util | type:platform | type:shell | type:feature
 ```
 
 Nx and ESLint enforce the principal dependency directions. For example, domain
@@ -130,7 +130,7 @@ dependency direction, decisions, and validation guidance. See
 
 ## Getting started
 
-Prerequisites: Node.js 22 (the CI runtime) and npm.
+Prerequisites: Node.js 22 and npm.
 
 ```bash
 npm ci
@@ -151,8 +151,11 @@ npx nx build app
 npx nx e2e app-e2e
 ```
 
-The CI pipeline runs lint, unit tests, and builds for all projects on pull
-requests and pushes to `main`.
+CI is intentionally disabled in the starter. When adopting it, choose GitHub
+Actions, Azure Pipelines, or local validation; see
+[the CI adoption guide](.github/workflows/README.md). The GitHub Actions
+template runs lint, unit tests, and builds for all projects on pull requests and
+pushes to `main` when explicitly enabled.
 
 For an architectural or configuration change, run the affected lint, tests, and
 build; review project tags and dependencies; and update the corresponding

@@ -107,6 +107,10 @@ export default [
                 'type:util',
               ],
             },
+            {
+              sourceTag: 'type:platform',
+              onlyDependOnLibsWithTags: ['type:platform', 'type:util'],
+            },
           ],
         },
       ],

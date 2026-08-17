@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { describe, expect, it } from 'vitest';
 import { defineFeatureFlag, featureFlagKey } from '../domain/feature-flag';
 import { provideFeatureFlags } from '../provide-feature-flags';
-import { FeatureEnabledDirective } from './feature-enabled.directive';
+import { FeatureDisabledDirective } from './feature-disabled.directive';
 
 const exportV2 = defineFeatureFlag({
   key: featureFlagKey('trips.export-v2'),
@@ -16,25 +16,17 @@ const exportV2 = defineFeatureFlag({
 });
 
 @Component({
-  imports: [FeatureEnabledDirective],
-  template: '<button *featureEnabled="exportV2">Export V2</button>',
+  imports: [FeatureDisabledDirective],
+  template: '<button *featureDisabled="exportV2">Legacy Export</button>',
 })
 class TestHost {
   readonly exportV2 = exportV2;
 }
 
-@Component({
-  imports: [FeatureEnabledDirective],
-  template: '<button *featureEnabled="exportV2">Export V2</button>',
-})
-class TestHostDisabled {
-  readonly exportV2 = exportV2;
-}
-
-describe('FeatureEnabledDirective', () => {
-  it('renders when the flag is enabled', async () => {
+describe('FeatureDisabledDirective', () => {
+  it('renders when the flag is disabled', async () => {
     await TestBed.configureTestingModule({
-      providers: [provideFeatureFlags({ flags: { 'trips.export-v2': true } })],
+      providers: [provideFeatureFlags({ flags: { 'trips.export-v2': false } })],
     }).compileComponents();
     const fixture = TestBed.createComponent(TestHost);
 
@@ -43,11 +35,11 @@ describe('FeatureEnabledDirective', () => {
     expect((fixture.nativeElement as HTMLElement).querySelector('button')).not.toBeNull();
   });
 
-  it('does not render when the flag is disabled', async () => {
+  it('does not render when the flag is enabled', async () => {
     await TestBed.configureTestingModule({
-      providers: [provideFeatureFlags({ flags: { 'trips.export-v2': false } })],
+      providers: [provideFeatureFlags({ flags: { 'trips.export-v2': true } })],
     }).compileComponents();
-    const fixture = TestBed.createComponent(TestHostDisabled);
+    const fixture = TestBed.createComponent(TestHost);
 
     await fixture.whenStable();
 
@@ -58,10 +50,10 @@ describe('FeatureEnabledDirective', () => {
     await TestBed.configureTestingModule({
       providers: [provideFeatureFlags({})],
     }).compileComponents();
-    const fixture = TestBed.createComponent(TestHostDisabled);
+    const fixture = TestBed.createComponent(TestHost);
 
     await fixture.whenStable();
 
-    expect((fixture.nativeElement as HTMLElement).querySelector('button')).toBeNull();
+    expect((fixture.nativeElement as HTMLElement).querySelector('button')).not.toBeNull();
   });
 });

@@ -22,11 +22,24 @@ configuration areas may be more pragmatic, but must not become a home for
 business logic without clear ownership. Features expose the smallest useful
 public API; complex features may use a facade for their presentation boundary.
 
+## Library composition model
+
+Libraries use Nx tags to declare scope and responsibility:
+
+```text
+scope:domain | scope:platform | scope:shared | scope:app
+type:domain | type:application | type:infrastructure | type:presentation |
+type:ui | type:util | type:platform | type:shell | type:feature
+```
+
 An app composes each bounded context through a `type:shell` library. A shell
 owns its route composition and may load the context's features; features never
 import, lazy-load, or otherwise compose one another. Read
 [application composition](../docs/architecture/application-composition.md)
 before adding routes that span features.
+
+The full dependency policy is in
+[executable architecture](../docs/architecture/enforcement.md).
 
 `@nx-angular-enterprise-starter/core/ddd` provides framework-independent
 `UseCase<Input, Output>` and `Mapper<From, To>` contracts. Use their direct

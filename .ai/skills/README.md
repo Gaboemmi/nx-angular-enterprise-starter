@@ -34,3 +34,6 @@ The initial skills establish architectural decision points without inventing
 generators or physical layouts that the codebase has not adopted yet. Tighten
 them with concrete commands and examples as recurring implementation patterns
 become proven.
+
+`adopt-ci` is the procedure for deliberately enabling a CI provider after a
+team chooses GitHub Actions, Azure Pipelines, or another supported provider.

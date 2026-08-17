@@ -18,3 +18,17 @@ External providers such as identity, Tolgee and telemetry are replaced by
 deterministic test adapters. CI should run affected lint, unit tests, build and
 relevant e2e/contract checks; flaky tests are defects to remove, not checks to
 ignore.
+
+## Test runners
+
+The repository uses different test runners depending on library type:
+
+- **Pure TypeScript libraries** (e.g. `core-ddd`) use Vitest directly via
+  `nx:run-commands`. These libraries have no Angular dependency and do not
+  require a browser or TestBed.
+- **Angular libraries** (e.g. `core-feature-flags`) use
+  `@nx/angular:unit-test` (vitest-angular). These tests need TestBed, Angular
+  DI, and the Angular compiler.
+
+Both runners produce LCOV coverage reports. The choice is determined by whether
+the library depends on Angular.

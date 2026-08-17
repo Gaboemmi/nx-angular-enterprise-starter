@@ -9,6 +9,12 @@ class NumberToTextMapper extends Mapper<number, string> {
 }
 
 describe('Mapper', () => {
+  it('maps a single item', () => {
+    const mapper = new NumberToTextMapper();
+
+    expect(mapper.map(42)).toBe('value-42');
+  });
+
   it('maps every item without mutating the source array', () => {
     const source = [1, 2] as const;
     const mapper = new NumberToTextMapper();

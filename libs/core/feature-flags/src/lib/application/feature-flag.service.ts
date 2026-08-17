@@ -67,14 +67,22 @@ export class FeatureFlagService {
           (resolvedValue) => {
             value.set(resolvedValue);
           },
-          () => {
+          (error: unknown) => {
+            console.warn(
+              `[FeatureFlagService] Async evaluation failed for flag "${flag.key}". Falling back to default.`,
+              error,
+            );
             value.set(flag.defaultValue);
           },
         );
       } else {
         value.set(result);
       }
-    } catch {
+    } catch (error: unknown) {
+      console.warn(
+        `[FeatureFlagService] Sync evaluation failed for flag "${flag.key}". Falling back to default.`,
+        error,
+      );
       value.set(flag.defaultValue);
     }
 

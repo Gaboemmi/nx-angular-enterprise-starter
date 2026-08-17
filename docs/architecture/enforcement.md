@@ -14,7 +14,7 @@ policy.
 | Nx boundaries   | Enforce allowed project dependencies.                                  | Project tags and `@nx/enforce-module-boundaries`. |
 | Sheriff         | Add structural restrictions only where Nx and ESLint are insufficient. | Not installed.                                    |
 | Tests           | Protect behavior and rules static analysis cannot express.             | Nx unit-test and e2e targets.                     |
-| CI              | Run required checks consistently before integration.                   | GitHub Actions workflow.                          |
+| CI              | Run required checks consistently before integration.                   | Optional provider template; disabled by default.  |
 | SonarQube Cloud | Assess quality and security of new code and enforce its Quality Gate.  | One project for the Nx monorepo.                  |
 
 Do not duplicate a rule across layers without a concrete reason. Prefer the
@@ -39,10 +39,11 @@ maintainability, at least 80% coverage on new code, and at most 3% duplicated
 lines on new code. These are starting thresholds, not a global coverage quota;
 they should be recalibrated with evidence as the starter gains real features.
 
-CI activates the scan once the repository variables `SONAR_ORGANIZATION` and
-`SONAR_PROJECT_KEY`, plus the `SONAR_TOKEN` secret, are configured. The scan
-waits for and fails on the Quality Gate. Until then, the Sonar step is skipped
-so a fork can establish its own Cloud project without inheriting credentials.
+When a CI provider is adopted, it activates the scan once the repository
+variables `SONAR_ORGANIZATION` and `SONAR_PROJECT_KEY`, plus the `SONAR_TOKEN`
+secret, are configured. The GitHub Actions template waits for and fails on the
+Quality Gate. Until then, the Sonar step is skipped so a fork can establish its
+own Cloud project without inheriting credentials.
 
 The ESLint baseline composes `@eslint/js` recommended,
 `typescript-eslint` `strictTypeChecked` and `stylisticTypeChecked`, plus

@@ -1,27 +1,28 @@
 # Design System
 
-## Objetivo
+## Objective
 
-El proyecto dispone de un único Design System Enterprise compartido por todas las aplicaciones del monorepo.
+The project provides a single shared Enterprise Design System consumed by all
+applications in the monorepo.
 
-El Design System constituye el contrato entre UX y desarrollo y proporciona:
+The Design System is the contract between UX and development and provides:
 
-- Consistencia visual.
-- Componentes reutilizables.
-- Accesibilidad.
-- APIs estables.
-- Integración con formularios.
+- Visual consistency.
+- Reusable components.
+- Accessibility.
+- Stable APIs.
+- Form integration.
 - Design tokens.
-- Documentación viva.
-- Testing visual y de accesibilidad.
+- Living documentation.
+- Visual and accessibility testing.
 
-No es una colección de componentes; es una plataforma UI.
+It is not a collection of components; it is a UI platform.
 
 ---
 
-# Filosofía
+# Philosophy
 
-El Design System sigue los siguientes principios:
+The Design System follows these principles:
 
 - Platform First.
 - Accessibility by Default.
@@ -34,9 +35,9 @@ El Design System sigue los siguientes principios:
 
 ---
 
-# Arquitectura
+# Architecture
 
-```
+```text
                     ┌──────────────┐
                     │ Applications │
                     └──────┬───────┘
@@ -58,9 +59,9 @@ El Design System sigue los siguientes principios:
                     Browser Platform
 ```
 
-Storybook actúa como otro consumidor del Design System:
+Storybook acts as another consumer of the Design System:
 
-```
+```text
                  ┌── Enterprise Apps
                  │
 Design System ───┤
@@ -70,33 +71,34 @@ Design System ───┤
 
 ---
 
-# Stack tecnológico
+# Technology Stack
 
-El Design System utilizará:
+The Design System uses:
 
-- HTML semántico.
+- Semantic HTML.
 - CSS Variables.
 - SCSS.
 - Angular Aria.
 - Angular CDK.
 - Storybook.
-- TypeScript estricto.
+- Strict TypeScript.
 
-Las convenciones de implementación de Angular se rigen por la Agent Skill oficial
-de Angular; este documento define la propiedad y los límites del Design System.
+Angular implementation conventions are governed by the official Angular
+Developer Agent Skill; this document defines ownership and boundaries of the
+Design System.
 
-No se utilizará Angular Material como base.
+Angular Material will not be used as a base.
 
 ---
 
-# Responsabilidades
+# Responsibilities
 
-| Necesidad      | Solución                   |
+| Need           | Solution                   |
 | -------------- | -------------------------- |
-| Button         | HTML nativo                |
-| Input          | HTML nativo                |
-| Checkbox       | HTML nativo                |
-| Link           | HTML nativo                |
+| Button         | Native HTML                |
+| Input          | Native HTML                |
+| Checkbox       | Native HTML                |
+| Link           | Native HTML                |
 | Badge          | HTML                       |
 | Tabs           | Angular Aria               |
 | Accordion      | Angular Aria               |
@@ -109,9 +111,9 @@ No se utilizará Angular Material como base.
 | Drag & Drop    | Angular CDK                |
 | Virtual Scroll | Angular CDK                |
 
-La regla general será:
+The general rule is:
 
-```
+```text
 HTML
    ↓
 Angular Aria
@@ -119,37 +121,37 @@ Angular Aria
 Angular CDK
 ```
 
-Siempre se utilizará la solución más simple posible.
+The simplest possible solution will always be used.
 
 ---
 
-# Principios de diseño
+# Design Principles
 
-## HTML primero
+## HTML first
 
-Siempre que sea posible se utilizarán elementos HTML nativos.
+Whenever possible, native HTML elements are used.
 
-Correcto
+Correct
 
 ```html
 <button aeButton></button>
 ```
 
-Incorrecto
+Incorrect
 
 ```html
 <ae-button></ae-button>
 ```
 
-La semántica nativa es parte de la accesibilidad.
+Native semantics are part of accessibility.
 
 ---
 
-## Componentes sólo cuando aportan valor
+## Components only when they add value
 
-No se crearán abstracciones sin comportamiento.
+No abstractions without behavior.
 
-No existen componentes como:
+There are no components like:
 
 ```html
 <ae-div>
@@ -157,44 +159,44 @@ No existen componentes como:
 ></ae-div>
 ```
 
-Un componente entra en el Design System únicamente cuando aporta:
+A component enters the Design System only when it provides:
 
-- comportamiento
-- accesibilidad
+- behavior
+- accessibility
 - API
-- reutilización
-- integración
-- semántica
+- reuse
+- integration
+- semantics
 
 ---
 
-## Componentes sin lógica de negocio
+## Components without business logic
 
-El Design System nunca conocerá:
+The Design System will never know about:
 
-- usuarios
-- permisos
+- users
+- permissions
 - APIs
-- casos de uso
-- entidades de dominio
+- use cases
+- domain entities
 - stores
-- autenticación
+- authentication
 
-Los componentes reciben datos.
+Components receive data.
 
-Los componentes emiten eventos.
+Components emit events.
 
-Nada más.
+Nothing else.
 
 ---
 
 # Design Tokens
 
-Todo el aspecto visual del sistema estará gobernado por Design Tokens.
+All visual aspects of the system are governed by Design Tokens.
 
-Los tokens se organizan en tres niveles.
+Tokens are organized in three levels.
 
-```
+```text
 Primitive Tokens
         ↓
 Semantic Tokens
@@ -202,9 +204,9 @@ Semantic Tokens
 Component Tokens
 ```
 
-Ejemplo
+Example
 
-```
+```text
 blue-600
       ↓
 color-action-primary
@@ -212,17 +214,17 @@ color-action-primary
 button-primary-background
 ```
 
-Los componentes únicamente consumirán Component Tokens o Semantic Tokens.
+Components consume only Component Tokens or Semantic Tokens.
 
-Nunca valores hardcodeados.
+Never hard-coded values.
 
-Correcto
+Correct
 
 ```css
 background: var(--ae-button-primary-background);
 ```
 
-Incorrecto
+Incorrect
 
 ```css
 background: #2457d6;
@@ -230,17 +232,17 @@ background: #2457d6;
 
 ---
 
-# Interoperabilidad del Design System
+# Design System Interoperability
 
-El proyecto no estará acoplado a una herramienta concreta de diseño.
+The project will not be coupled to a specific design tool.
 
-La arquitectura introduce una capa denominada:
+The architecture introduces a layer called:
 
-```
+```text
 Design Bridge
 ```
 
-```
+```text
             Design Tool
                  │
                  ▼
@@ -254,46 +256,49 @@ Design Bridge
  Storybook   Angular      AI Agents
 ```
 
-Actualmente el primer adaptador previsto será Figma, pero la arquitectura permitirá sustituirlo por cualquier otra herramienta.
+The first planned adapter is Figma, but the architecture will allow replacing
+it with any other tool.
 
 ---
 
 # Design Contract
 
-El Design Contract representa el lenguaje común entre UX y desarrollo.
+The Design Contract represents the common language between UX and development.
 
-Incluye:
+It includes:
 
 - Design Tokens
-- Componentes
-- Variantes
-- Estados
-- Accesibilidad
-- Versionado
-- Mapeos
+- Components
+- Variants
+- States
+- Accessibility
+- Versioning
+- Mappings
 
-No pertenece ni a Angular ni a Figma.
+It belongs neither to Angular nor to Figma.
 
 ---
 
-# Integración con herramientas de diseño
+# Design Tool Integration
 
-La sincronización entre diseño y código se realizará mediante adaptadores.
+Synchronization between design and code will be handled through adapters.
 
-Inicialmente se evaluará:
+The initial evaluation will cover:
 
 - Figma Variables
 - Figma Code Connect
 - Figma MCP
 
-El objetivo no es sincronizar automáticamente el código desde Figma, sino compartir un contrato común que reduzca el trabajo manual y mejore la colaboración entre UX, desarrollo y herramientas de IA.
+The goal is not to automatically sync code from Figma, but to share a common
+contract that reduces manual work and improves collaboration between UX,
+development, and AI tools.
 
-Los cambios de diseño deberán seguir el flujo habitual de ingeniería:
+Design changes must follow the standard engineering workflow:
 
-```
-Cambio de diseño
+```text
+Design change
         ↓
-Actualización del Design Contract
+Design Contract update
         ↓
 Pull Request
         ↓
@@ -308,27 +313,27 @@ Release
 
 # Storybook
 
-Storybook es un consumidor del Design System.
+Storybook is a consumer of the Design System.
 
-Sus responsabilidades son:
+Its responsibilities are:
 
-- documentación viva
-- catálogo de componentes
-- playground
-- ejemplos
-- estados
-- responsive
-- interaction testing
-- accessibility testing
-- visual regression
+- Living documentation
+- Component catalog
+- Playground
+- Examples
+- States
+- Responsive testing
+- Interaction testing
+- Accessibility testing
+- Visual regression
 
-Storybook representa la implementación real del Design System.
+Storybook represents the actual implementation of the Design System.
 
 ---
 
-# Estructura
+# Structure
 
-```
+```text
 libs/
 
     ae-design-tokens/
@@ -342,11 +347,11 @@ libs/
         testing/
 ```
 
-Cada componente se publica mediante un Secondary Entry Point.
+Each component is published through a Secondary Entry Point.
 
-Ejemplo
+Example
 
-```
+```text
 @ae/design-system/button
 
 @ae/design-system/dialog
@@ -354,66 +359,71 @@ Ejemplo
 @ae/design-system/testing
 ```
 
-No se permitirá un barrel global que exponga toda la biblioteca.
+A global barrel exposing the entire library is not permitted.
 
 ---
 
-# Accesibilidad
+# Accessibility
 
-La accesibilidad forma parte del contrato del componente.
+Accessibility is part of the component contract.
 
-Todo componente interactivo debe definir:
+Every interactive component must define:
 
-- navegación por teclado
-- foco
+- keyboard navigation
+- focus management
 - screen readers
-- estados disabled
-- estados error
-- alto contraste
+- disabled states
+- error states
+- high contrast
 - reduced motion
 
-La accesibilidad nunca será una mejora posterior.
+Accessibility will never be a later enhancement.
 
 ---
 
 # Testing
 
-El Design System dispondrá de:
+The Design System will include:
 
 - Unit Tests
 - Interaction Tests
 - Accessibility Tests
 - Visual Regression Tests
 
-Todo nuevo componente deberá incorporar sus pruebas correspondientes antes de ser considerado completo.
+Every new component must include its corresponding tests before being
+considered complete.
 
 ---
 
-# Relación con la IA
+# Relationship with AI
 
-La arquitectura está diseñada para que agentes de IA puedan comprender fácilmente el Design System.
+The architecture is designed so that AI agents can easily understand the
+Design System.
 
-Los objetivos son:
+The goals are:
 
-- APIs estables.
-- Componentes bien documentados.
-- Design Contract compartido.
-- Storybook como fuente de ejemplos.
-- Code Connect para mapear diseño ↔ código.
-- Harness Engineering para proporcionar contexto arquitectónico.
+- Stable APIs.
+- Well-documented components.
+- Shared Design Contract.
+- Storybook as the source of examples.
+- Code Connect to map design to code.
+- Harness Engineering to provide architectural context.
 
-El propósito es reducir la distancia entre el diseño, la implementación y la asistencia mediante IA.
+The purpose is to reduce the distance between design, implementation, and
+AI-assisted development.
 
 ---
 
-# Resumen
+# Summary
 
-El Design System de AE se basa en cinco pilares fundamentales:
+The AE Design System is built on five fundamental pillars:
 
-1. HTML semántico antes que abstracciones.
-2. Accesibilidad como parte del contrato.
-3. Design Tokens como única fuente de estilos.
-4. Storybook como verdad de implementación.
-5. Design Bridge como puente entre UX, desarrollo e IA.
+1. Semantic HTML before abstractions.
+2. Accessibility as part of the contract.
+3. Design Tokens as the single source of styles.
+4. Storybook as the implementation truth.
+5. Design Bridge as the bridge between UX, development, and AI.
 
-Esta arquitectura permite mantener un sistema de diseño escalable, desacoplado de herramientas concretas y preparado para evolucionar junto con el ecosistema Angular y las capacidades de IA.
+This architecture allows maintaining a scalable design system, decoupled from
+specific tools, and prepared to evolve alongside the Angular ecosystem and AI
+capabilities.

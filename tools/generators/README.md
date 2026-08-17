@@ -1,25 +1,21 @@
-# Generadores locales
+# Local generators
 
-Este directorio alberga los generadores locales que codifican las convenciones
-arquitectónicas del repositorio. Cada generador conserva su implementación,
-esquema y plantillas dentro de su propia carpeta.
+This directory houses local generators that encode the repository's
+architectural conventions. Each generator keeps its implementation, schema,
+and templates within its own folder.
 
-- `feature`: crea los límites iniciales de una funcionalidad.
-- `use-case`: crea una operación de la capa de aplicación.
-- `mapper`: crea una transformación significativa entre representaciones.
-- `datasource`: crea una integración con un sistema externo.
-- `shell`: crea el límite de composición y rutas de un bounded context.
+- `shell`: creates the composition and routing boundary of a bounded context.
 
-El generador `shell` está disponible mediante la colección local:
+The `shell` generator is available through the local collection:
 
 ```bash
 npx nx g ./tools/generators/collection.json:shell --name=orders --no-interactive
 ```
 
-Genera `libs/domains/orders/shell`, con el tag `scope:domain,type:shell` y una
-API pública de rutas. Las rutas de la aplicación se actualizan de forma
-explícita después de generar la shell, para que la app sólo dependa de ese
-contrato y no conozca las features del dominio.
+It generates `libs/domains/orders/shell` with the tag `scope:domain,type:shell`
+and a public route API. Application routes are updated explicitly after
+generating the shell, so the app depends only on that contract and does not
+know the domain's features.
 
-Los demás directorios siguen siendo reservas documentales; no exponen todavía
-generadores ejecutables.
+The other directories (`feature`, `use-case`, `mapper`, `datasource`) are
+reserved for future generators. They do not yet expose executable generators.
