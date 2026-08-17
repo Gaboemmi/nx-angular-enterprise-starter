@@ -1,0 +1,8 @@
+{
+  "name": "@nx-angular-enterprise-starter/core/i18n",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/core": "^22.0.0"
+  },
+  "sideEffects": false
+}

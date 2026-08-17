@@ -60,7 +60,9 @@ contracts, routes, or events when justified—not through internal implementatio
 imports.
 
 Read the [domain-driven architecture guide](docs/architecture/ddd.md) before
-making structural decisions.
+making structural decisions. For new or ambiguous business capabilities, use
+[Event Storming](docs/architecture/event-storming.md) to discover ownership and
+context relationships before choosing the Nx structure.
 
 ### Executable boundaries
 

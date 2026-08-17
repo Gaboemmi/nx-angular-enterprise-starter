@@ -35,5 +35,9 @@ generators or physical layouts that the codebase has not adopted yet. Tighten
 them with concrete commands and examples as recurring implementation patterns
 become proven.
 
+`discover-domain` is the selective Event Storming procedure for establishing
+business behavior, ownership, invariants, and cross-context contracts before a
+complex or ambiguous feature is translated into Nx and Angular artifacts.
+
 `adopt-ci` is the procedure for deliberately enabling a CI provider after a
 team chooses GitHub Actions, Azure Pipelines, or another supported provider.

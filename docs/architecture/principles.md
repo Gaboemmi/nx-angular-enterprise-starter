@@ -58,6 +58,12 @@ A developer should be able to understand where code belongs and what it may depe
 
 Business code should primarily be organized around domains and capabilities rather than technical categories.
 
+This is the repository's **vertical slicing** model: a cohesive business
+capability or bounded context is a vertical, while domain, application,
+infrastructure, and presentation responsibilities organize work _inside_ that
+vertical. Vertical slicing complements DDD and dependency direction; it does
+not replace them.
+
 Prefer:
 
 ```text
@@ -79,6 +85,14 @@ utils/
 Technical concerns still exist, but they should not define the primary structure of the business application.
 
 Code that changes together should generally live together.
+
+Do not create a vertical for a screen, route, or technical concern alone. A
+vertical represents a cohesive business capability with clear ownership.
+
+Discover boundaries from business behavior before choosing code structure.
+[Event Storming](./event-storming.md) is the preferred collaborative technique
+when a capability is new, ambiguous, or crosses responsibilities; it is a
+selective discovery tool, not a ceremony for every change.
 
 ---
 
@@ -137,6 +151,11 @@ It is not a goal.
 ## 7. Features Own Their Business Logic
 
 Business behavior should belong to the domain or feature that owns it.
+
+Business models belong to their bounded context. Two contexts may model the
+same real-world concept differently; matching names or properties do not create
+a shared contract. Small, intentional duplication is preferable to a global
+model that couples unrelated language and lifecycles.
 
 Avoid global dumping grounds such as generic:
 

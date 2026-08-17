@@ -6,11 +6,12 @@ Adding a business capability, route-level area, or feature library.
 
 ## Steps
 
-1. Name the capability in domain language and confirm its owning domain; do not create a generic technical feature.
-2. Decide the smallest shape that solves the need: component-local state for simple UI, or explicit domain, application, infrastructure, and presentation responsibilities when complexity justifies them.
-3. Create a tagged Nx library when a library boundary is needed. Use one `scope:*` tag and one responsibility `type:*` tag from `docs/architecture/enforcement.md`.
-4. Keep the public entry point minimal. Do not let another feature import internal files; define an explicit contract when domains must communicate.
-5. Add only the supporting use cases, ports, mappers, datasource, store, or facade that have a concrete responsibility. Follow the respective skill when adding one.
+1. If the capability has ambiguous language, rules, ownership, lifecycle, actors, or cross-context effects, run `discover-domain` before choosing code structure. Skip that procedure when the behavior and owner are already clear.
+2. Name the capability in domain language and confirm its owning domain; do not create a generic technical feature. A vertical is a cohesive bounded context, not a screen, route, or technical concern; record its clear owner.
+3. Decide the smallest shape that solves the need: component-local state for simple UI, or explicit domain, application, infrastructure, and presentation responsibilities when complexity justifies them.
+4. Create a tagged Nx library when a library boundary is needed. Use one `scope:*` tag and one responsibility `type:*` tag from `docs/architecture/enforcement.md`.
+5. Keep the public entry point minimal. Do not let another feature import internal files; define an explicit contract when domains must communicate.
+6. Add only the supporting use cases, ports, mappers, datasource, store, or facade that have a concrete responsibility. Follow the respective skill when adding one.
 
 ## Validate
 

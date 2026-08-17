@@ -16,19 +16,20 @@ construction harness.
 
 ### 1. Full Repository Dispatch
 
-Dispatch **all seven** specialist agents with full context. This is the
+Dispatch **all eight** specialist agents with full context. This is the
 most comprehensive review — it evaluates the entire repository against
 every standard.
 
-| Agent                 | Hardening Focus                                                               |
-| --------------------- | ----------------------------------------------------------------------------- |
-| architecture-guardian | All ADRs are implemented, all boundaries are enforced, no architectural drift |
-| clean-code-reviewer   | All code is exemplary, no shortcuts, no technical debt                        |
-| angular-expert        | All Angular patterns are modern throughout                                    |
-| harness-architect     | Product Harness is complete, accurate, and minimal                            |
-| docs-guardian         | All documentation is current, no drift, all links valid                       |
-| simplicity-guardian   | No unnecessary abstractions, no over-engineering                              |
-| consistency-reviewer  | One way per pattern, no inconsistencies                                       |
+| Agent                      | Hardening Focus                                                                    |
+| -------------------------- | ---------------------------------------------------------------------------------- |
+| architecture-guardian      | All ADRs are implemented, all boundaries are enforced, no architectural drift      |
+| boundary-enforcement-agent | All rules have executable enforcement, no unenforced policies, generators complete |
+| clean-code-reviewer        | All code is exemplary, no shortcuts, no technical debt                             |
+| angular-expert             | All Angular patterns are modern throughout                                         |
+| harness-architect          | Product Harness is complete, accurate, and minimal                                 |
+| docs-guardian              | All documentation is current, no drift, all links valid                            |
+| simplicity-guardian        | No unnecessary abstractions, no over-engineering                                   |
+| consistency-reviewer       | One way per pattern, no inconsistencies                                            |
 
 ### 2. Mechanical Validation
 
@@ -82,6 +83,13 @@ Produce a readiness checklist:
 - [ ] All ADRs implemented consistently
 - [ ] No architectural drift detected
 - [ ] All boundaries enforced by tooling
+
+### Enforcement
+- [ ] All documented rules have executable enforcement
+- [ ] Boundary tests exist for all dependency constraints
+- [ ] Generators produce correct tags and folder structure
+- [ ] No UNENFORCED findings from boundary-enforcement-agent
+- [ ] SonarQube coverage paths registered for all libraries
 
 ### Code Quality
 - [ ] All code is exemplary for a starter

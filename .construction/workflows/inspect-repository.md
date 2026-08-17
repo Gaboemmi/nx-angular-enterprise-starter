@@ -40,17 +40,18 @@ Gather the current state:
 
 Load the orchestrator from `.construction/agents/orchestrator.md`.
 
-Dispatch **all seven** specialist agents with full repository context:
+Dispatch **all eight** specialist agents with full repository context:
 
-| Agent                 | Context to Provide                               |
-| --------------------- | ------------------------------------------------ |
-| architecture-guardian | Full architecture docs, all ADRs, repo structure |
-| clean-code-reviewer   | All source code in libs/ and apps/app/           |
-| angular-expert        | All component, service, and template files       |
-| harness-architect     | .ai/, .opencode/, .agents/, AGENTS.md            |
-| docs-guardian         | All docs/ files, all .ai/ files, code references |
-| simplicity-guardian   | Full repository overview, all abstractions       |
-| consistency-reviewer  | Full repository overview, all patterns           |
+| Agent                      | Context to Provide                               |
+| -------------------------- | ------------------------------------------------ |
+| architecture-guardian      | Full architecture docs, all ADRs, repo structure |
+| boundary-enforcement-agent | Enforcement config, ESLint, generators, CI, tags |
+| clean-code-reviewer        | All source code in libs/ and apps/app/           |
+| angular-expert             | All component, service, and template files       |
+| harness-architect          | .ai/, .opencode/, .agents/, AGENTS.md            |
+| docs-guardian              | All docs/ files, all .ai/ files, code references |
+| simplicity-guardian        | Full repository overview, all abstractions       |
+| consistency-reviewer       | Full repository overview, all patterns           |
 
 ### 4. Consolidate Findings
 

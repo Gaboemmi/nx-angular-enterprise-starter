@@ -11,6 +11,10 @@ is evolving from a generated application into a domain-oriented modular monolith
 - Follow established patterns before introducing an abstraction or dependency.
 - Respect feature and architectural boundaries; avoid unrelated changes.
 - Keep business code owned by its domain or feature, not generic shared areas.
+- Before implementing a new or ambiguous business capability, use the
+  [`discover-domain`](.ai/skills/discover-domain/SKILL.md) procedure; skip it
+  when ownership and behavior are already clear or the change is purely
+  presentational.
 - Prefer rules enforced by Nx, ESLint, TypeScript, tests, or CI over prose.
 - Before an architectural or configuration change, read the relevant `.ai/` map
   and linked documentation.

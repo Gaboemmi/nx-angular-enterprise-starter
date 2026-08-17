@@ -87,6 +87,22 @@ points are the only supported cross-domain imports. When a new valid dependency
 does not fit this matrix, change this document and the lint configuration in the
 same pull request.
 
+### Current vertical-isolation limit
+
+The current `scope:*` tags classify broad repository areas (`domain`,
+`platform`, `shared`, and `app`); they do not identify individual business
+verticals. Consequently, the current matrix enforces layer and feature/shell
+direction, but cannot mechanically distinguish one future bounded context from
+another. The documented rule remains: do not import another vertical's
+internals, and use the smallest explicit public contract when integration is
+needed.
+
+Before adding per-vertical dependency constraints, record a decision that
+defines the vertical identity/tag scheme, approved contract shape, and when a
+bounded context needs separate Nx libraries. Update this policy, the ESLint
+matrix, generators, and negative-boundary tests together. Do not claim
+cross-vertical isolation is executable until that decision is implemented.
+
 ## Adoption status
 
 An accepted ADR records a decision, not necessarily its completed implementation.

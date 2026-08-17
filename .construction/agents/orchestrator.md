@@ -60,15 +60,15 @@ Provide each agent with:
 |                  | docs-guardian, simplicity-guardian, consistency-reviewer,      |
 |                  | harness-architect                                              |
 | `architectural`  | architecture-guardian, simplicity-guardian, docs-guardian,     |
-|                  | consistency-reviewer                                           |
+|                  | consistency-reviewer, boundary-enforcement-agent               |
 | `documentation`  | docs-guardian, consistency-reviewer                            |
 | `tooling`        | architecture-guardian, simplicity-guardian, harness-architect, |
-|                  | consistency-reviewer                                           |
+|                  | consistency-reviewer, boundary-enforcement-agent               |
 | `refactor`       | clean-code-reviewer, angular-expert, simplicity-guardian,      |
 |                  | consistency-reviewer                                           |
 | `quality`        | clean-code-reviewer, angular-expert                            |
 | `infrastructure` | architecture-guardian, angular-expert, docs-guardian,          |
-|                  | simplicity-guardian                                            |
+|                  | simplicity-guardian, boundary-enforcement-agent                |
 
 Agents may be dispatched in parallel when their analysis does not depend
 on another agent's output.

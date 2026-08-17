@@ -22,6 +22,23 @@ configuration areas may be more pragmatic, but must not become a home for
 business logic without clear ownership. Features expose the smallest useful
 public API; complex features may use a facade for their presentation boundary.
 
+Business code follows vertical slicing: a cohesive bounded context is the
+vertical, and domain/application/infrastructure/presentation responsibilities
+live inside it as complexity requires. Do not create a vertical for a screen or
+technical concern. Cross-vertical work uses the smallest explicit public
+contract; never import another vertical's internals.
+
+Business models belong to their bounded context. Do not reuse a model merely
+because another context names the same real-world concept; matching shape is
+not a shared contract. Frontend application and view models may follow
+user-facing needs instead of backend topology, but a screen alone is not a new
+bounded context.
+
+Use [Event Storming](../docs/architecture/event-storming.md) selectively to
+discover events, invariants, ownership, and context relationships before fixing
+the Nx shape of a new or ambiguous business capability. It is not required for
+trivial changes and does not imply event sourcing or asynchronous messaging.
+
 ## Library composition model
 
 Libraries use Nx tags to declare scope and responsibility:
@@ -59,6 +76,7 @@ Read the relevant detailed source before making architectural decisions:
 
 - [Principles](../docs/architecture/principles.md)
 - [Domain-driven architecture](../docs/architecture/ddd.md)
+- [Event Storming](../docs/architecture/event-storming.md)
 - [Core DDD primitives](../docs/architecture/core.md)
 - [State management](../docs/architecture/state-management.md)
 - [Authentication](../docs/architecture/authentication.md)

@@ -31,6 +31,7 @@ Use `UseCase`, `Repository`, `Datasource`, `Mapper`, `Store`, and `Facade` only 
 ## Related documentation
 
 - `docs/architecture/ddd.md`
+- `docs/architecture/event-storming.md`
 - `docs/architecture/core.md`
 - `docs/architecture/state-management.md`
 - `docs/architecture/principles.md`

@@ -1,5 +1,11 @@
 # Domain-Driven Design
 
+Business code is organized as vertical slices: a bounded context is the
+vertical, and its domain, application, infrastructure, and presentation
+responsibilities are internal layers. Layers are not global technical folders
+and are not mandatory Nx libraries; introduce library boundaries only when they
+protect a meaningful responsibility.
+
 This project uses **Domain-Driven Design (DDD) as an architectural guide**, combined with principles from Clean Architecture and Hexagonal Architecture.
 
 The goal is not to implement every DDD pattern everywhere.
@@ -127,6 +133,21 @@ export class Trip {
 ```
 
 The domain does not know whether data comes from REST, GraphQL, local storage, IndexedDB, or another source.
+
+### Model ownership
+
+Every business model has one bounded-context owner. Reuse is justified by the
+same language, rules and lifecycle, not merely because two contexts refer to
+the same real-world concept or currently expose the same properties.
+
+For example, Catalog may own a `Product` while Inventory owns a `StockItem` that
+also contains a `productId`. They may evolve independently. Do not merge them
+into a global model with optional catalog and inventory fields just to remove
+small duplication.
+
+Share a model only as a deliberate cross-context contract, or share a primitive
+whose meaning is genuinely stable across contexts. Otherwise, keep the models
+separate and translate at the boundary when information crosses contexts.
 
 ---
 
@@ -341,6 +362,14 @@ map(dto: CountryDto): Country {
 ```
 
 unless the separation protects an intentional architectural boundary.
+
+### Representation-specific models
+
+An API DTO, domain model, application model and presentation view model are
+different responsibilities, not four artifacts that every flow must contain.
+Keep separate representations when their language, lifecycle, validation or
+consumer needs differ. Collapse them when the distinction adds no value, and do
+not introduce identity mappings as ceremony.
 
 ---
 
@@ -609,6 +638,11 @@ Presentation must not contain domain rules.
 
 Domains must not import another domain's internal implementation.
 
+Keep verticals independent. When one vertical needs another's capability, it
+depends on the smallest explicit public contract it needs, not on the other
+vertical's services, store, components, datasource, or implementation details.
+The owning application or shell composes independently owned verticals.
+
 Avoid:
 
 ```text
@@ -626,11 +660,30 @@ Prefer communication through:
 
 Do not create a global `shared` domain containing unrelated business concepts merely to bypass architectural boundaries.
 
+### Frontend and backend context maps
+
+Frontend boundaries follow user-facing business language, rules and ownership;
+they do not have to mirror backend service or bounded-context topology. Align
+the two when they represent the same capability, and translate explicitly when
+they do not. A frontend-specific application or view model may therefore
+compose information from several backend contracts.
+
+That composition does not by itself create a bounded context. A screen, route
+or workflow name is insufficient: use domain discovery to establish distinct
+language, behavior and ownership before introducing a new vertical. Backend
+composition infrastructure such as a BFF requires its own evidence and
+architectural decision; it is not a default part of this DDD flow.
+
 ---
 
 # 12. AI-Assisted Development
 
 Architecture is part of the project's AI context.
+
+For a new or ambiguous business capability, establish domain events,
+invariants, ownership, and context relationships before naming Angular or Nx
+artifacts. Use the selective [Event Storming](./event-storming.md) procedure;
+skip it when the behavior and owner are already clear.
 
 AI agents should use these rules to determine both:
 
