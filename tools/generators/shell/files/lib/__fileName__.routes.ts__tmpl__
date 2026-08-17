@@ -1,0 +1,8 @@
+import { Routes } from '@angular/router';
+
+/**
+ * Public routing contract for the <%= name %> bounded context.
+ *
+ * The shell composes route-level features. Features must not load one another.
+ */
+export const <%= constantName %>_ROUTES: Routes = [];

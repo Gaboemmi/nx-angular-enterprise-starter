@@ -70,6 +70,36 @@ export default [
                             ]
                         },
                         {
+                            sourceTag: "type:app",
+                            onlyDependOnLibsWithTags: [
+                                "type:shell",
+                                "type:platform",
+                                "type:ui",
+                                "type:util"
+                            ]
+                        },
+                        {
+                            sourceTag: "type:shell",
+                            onlyDependOnLibsWithTags: [
+                                "type:feature",
+                                "type:application",
+                                "type:domain",
+                                "type:platform",
+                                "type:ui",
+                                "type:util"
+                            ]
+                        },
+                        {
+                            sourceTag: "type:feature",
+                            onlyDependOnLibsWithTags: [
+                                "type:application",
+                                "type:domain",
+                                "type:platform",
+                                "type:ui",
+                                "type:util"
+                            ]
+                        },
+                        {
                             sourceTag: "type:domain",
                             onlyDependOnLibsWithTags: [
                                 "type:domain",

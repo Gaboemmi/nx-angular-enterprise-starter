@@ -1,5 +1,7 @@
 # Nx Angular Enterprise Starter
 
+<img src="apps/app/public/logo.png" alt="Project logo" width="160">
+
 An opinionated, production-oriented foundation for modern enterprise Angular
 applications built with Nx.
 

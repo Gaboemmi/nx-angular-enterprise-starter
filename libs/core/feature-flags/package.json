@@ -1,0 +1,8 @@
+{
+  "name": "@nx-angular-enterprise-starter/core/feature-flags",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/core": "^22.0.0"
+  },
+  "sideEffects": false
+}

@@ -10,11 +10,18 @@ Toda biblioteca nueva declara un tag de alcance y otro de responsabilidad:
 ```text
 scope:domain | scope:platform | scope:shared | scope:app
 type:domain | type:application | type:infrastructure | type:presentation |
-type:ui | type:util | type:platform
+type:ui | type:util | type:platform | type:shell | type:feature
 ```
 
 Los imports entre dominios usan únicamente la API pública del proyecto. No se
 añaden librerías sin tags ni excepciones amplias para resolver una dependencia.
+
+## Shells de dominio
+
+La aplicación sólo compone un bounded context a través de `type:shell`. Una
+shell puede cargar las `type:feature` de su propio contexto; una feature no puede
+importar ni cargar otra feature o shell. Esto incluye `import()` usado en rutas:
+la carga perezosa no elimina la dependencia arquitectónica.
 
 ## Cambiar la matriz
 

@@ -11,13 +11,16 @@ permissions:
 
 jobs:
   quality:
-    name: Lint, test and build
+    name: Lint, test, build and SonarQube Cloud
     runs-on: ubuntu-latest
     timeout-minutes: 20
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          # SonarQube Cloud needs full history to calculate New Code correctly.
+          fetch-depth: 0
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -36,3 +39,13 @@ jobs:
 
       - name: Build
         run: npx nx run-many --target=build --all --outputStyle=static
+
+      - name: SonarQube Cloud analysis
+        if: ${{ vars.SONAR_ORGANIZATION != '' && vars.SONAR_PROJECT_KEY != '' }}
+        uses: SonarSource/sonarqube-scan-action@v7
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.organization=${{ vars.SONAR_ORGANIZATION }}
+            -Dsonar.projectKey=${{ vars.SONAR_PROJECT_KEY }}

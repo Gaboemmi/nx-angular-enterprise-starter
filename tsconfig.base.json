@@ -15,7 +15,10 @@
     "skipDefaultLibCheck": true,
     "strict": true,
     "paths": {
-      "@nx-angular-enterprise-starter/core/ddd": ["libs/core/ddd/src/index.ts"]
+      "@nx-angular-enterprise-starter/core/ddd": ["./libs/core/ddd/src/index.ts"],
+      "@nx-angular-enterprise-starter/core/feature-flags": [
+        "./libs/core/feature-flags/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

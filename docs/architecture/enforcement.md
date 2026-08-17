@@ -15,9 +15,34 @@ policy.
 | Sheriff       | Add structural restrictions only where Nx and ESLint are insufficient. | Not installed.                                    |
 | Tests         | Protect behavior and rules static analysis cannot express.             | Nx unit-test and e2e targets.                     |
 | CI            | Run required checks consistently before integration.                   | GitHub Actions workflow.                          |
+| SonarQube Cloud | Assess quality and security of new code and enforce its Quality Gate. | One project for the Nx monorepo.                  |
 
 Do not duplicate a rule across layers without a concrete reason. Prefer the
 smallest deterministic mechanism that catches the failure.
+
+## SonarQube Cloud
+
+SonarQube Cloud is an independent, CI-only quality gate. It complements, but
+does not replace, TypeScript, ESLint, Nx module boundaries, repository-owned
+architectural rules, or tests. Those layers retain ownership of their
+respective concerns.
+
+The workspace is analyzed as one SonarQube Cloud project. Nx remains the owner
+of library and domain granularity. Test targets produce LCOV reports in
+`coverage/app/lcov.info`, `coverage/core-ddd/lcov.info`, and
+`coverage/core-feature-flags/lcov.info`; add a report path to
+`sonar-project.properties` whenever a new test target emits coverage.
+
+The Quality Gate is configured in SonarQube Cloud using Clean as You Code: no
+new bugs or vulnerabilities, an A rating for reliability, security and
+maintainability, at least 80% coverage on new code, and at most 3% duplicated
+lines on new code. These are starting thresholds, not a global coverage quota;
+they should be recalibrated with evidence as the starter gains real features.
+
+CI activates the scan once the repository variables `SONAR_ORGANIZATION` and
+`SONAR_PROJECT_KEY`, plus the `SONAR_TOKEN` secret, are configured. The scan
+waits for and fails on the Quality Gate. Until then, the Sonar step is skipped
+so a fork can establish its own Cloud project without inheriting credentials.
 
 The ESLint baseline composes `@eslint/js` recommended,
 `typescript-eslint` `strictTypeChecked` and `stylisticTypeChecked`, plus
@@ -33,7 +58,7 @@ Libraries use a scope tag and a responsibility tag:
 ```text
 scope:domain | scope:platform | scope:shared | scope:app
 type:domain | type:application | type:infrastructure | type:presentation |
-type:ui | type:util | type:platform
+type:ui | type:util | type:platform | type:shell | type:feature
 ```
 
 The application already has `scope:app,type:app`. New libraries must receive
@@ -47,7 +72,14 @@ tags when created; untagged libraries are not accepted as an escape hatch.
   platform infrastructure.
 - `type:presentation` uses application APIs and UI/util libraries, never
   infrastructure directly.
-- Apps compose domains, platform and shared capabilities.
+- `type:app` imports only shells and cross-cutting platform/UI/util libraries.
+- `type:shell` is the domain composition boundary: it may load its own features,
+  and use application/domain/platform/UI/util APIs, but it does not access
+  infrastructure directly.
+- `type:feature` may use application/domain/platform/UI/util APIs, but may not
+  depend on another feature or on a shell.
+- Apps compose business capabilities through their shells; a shell owns routing,
+  feature composition and route-level providers for one bounded context.
 
 These rules are enforced through `@nx/enforce-module-boundaries`. Public entry
 points are the only supported cross-domain imports. When a new valid dependency

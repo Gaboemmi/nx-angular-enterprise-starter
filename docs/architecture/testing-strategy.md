@@ -1,6 +1,8 @@
 # Testing Strategy
 
-Tests protect behavior and architectural boundaries rather than a coverage quota.
+Tests protect behavior and architectural boundaries rather than a global
+coverage quota. SonarQube Cloud evaluates coverage only for new code as one
+signal in its CI Quality Gate; it does not change the purpose or scope of tests.
 
 | Scope | Primary concern |
 | --- | --- |
@@ -16,4 +18,3 @@ External providers such as identity, Tolgee and telemetry are replaced by
 deterministic test adapters. CI should run affected lint, unit tests, build and
 relevant e2e/contract checks; flaky tests are defects to remove, not checks to
 ignore.
-

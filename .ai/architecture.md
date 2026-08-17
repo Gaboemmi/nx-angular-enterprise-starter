@@ -22,6 +22,12 @@ configuration areas may be more pragmatic, but must not become a home for
 business logic without clear ownership. Features expose the smallest useful
 public API; complex features may use a facade for their presentation boundary.
 
+An app composes each bounded context through a `type:shell` library. A shell
+owns its route composition and may load the context's features; features never
+import, lazy-load, or otherwise compose one another. Read
+[application composition](../docs/architecture/application-composition.md)
+before adding routes that span features.
+
 `@nx-angular-enterprise-starter/core/ddd` provides framework-independent
 `UseCase<Input, Output>` and `Mapper<From, To>` contracts. Use their direct
 `execute`, `map`, and `mapArray` operations; do not introduce generic executor
@@ -52,6 +58,7 @@ Read the relevant detailed source before making architectural decisions:
   [observability](../docs/architecture/observability.md)
 - [Design system](../docs/architecture/design-system.md)
 - [Federation](../docs/architecture/federation.md)
+- [Application composition](../docs/architecture/application-composition.md)
 - [Executable architecture](../docs/architecture/enforcement.md) and
   [testing strategy](../docs/architecture/testing-strategy.md)
 - [Accepted ADRs](../docs/decisions/README.md)
