@@ -58,14 +58,16 @@ Provide each agent with:
 | ---------------- | -------------------------------------------------------------- |
 | `feature`        | architecture-guardian, angular-expert, clean-code-reviewer,    |
 |                  | docs-guardian, simplicity-guardian, consistency-reviewer,      |
-|                  | harness-architect                                              |
+|                  | harness-architect, ai-long-term-value                          |
 | `architectural`  | architecture-guardian, simplicity-guardian, docs-guardian,     |
-|                  | consistency-reviewer, boundary-enforcement-agent               |
+|                  | consistency-reviewer, boundary-enforcement-agent,              |
+|                  | ai-long-term-value                                             |
 | `documentation`  | docs-guardian, consistency-reviewer                            |
 | `tooling`        | architecture-guardian, simplicity-guardian, harness-architect, |
-|                  | consistency-reviewer, boundary-enforcement-agent               |
+|                  | consistency-reviewer, boundary-enforcement-agent,              |
+|                  | ai-long-term-value                                             |
 | `refactor`       | clean-code-reviewer, angular-expert, simplicity-guardian,      |
-|                  | consistency-reviewer                                           |
+|                  | consistency-reviewer, ai-long-term-value                       |
 | `quality`        | clean-code-reviewer, angular-expert                            |
 | `infrastructure` | architecture-guardian, angular-expert, docs-guardian,          |
 |                  | simplicity-guardian, boundary-enforcement-agent                |
