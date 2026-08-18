@@ -1,0 +1,13 @@
+import { Mapper } from '@nx-angular-enterprise-starter/core/ddd';
+
+/**
+ * Translates between two representations.
+ *
+ * Replace `unknown` with the concrete From and To types once the
+ * boundary contract is defined.
+ */
+export class <%= className %> extends Mapper<unknown, unknown> {
+  map(source: unknown): unknown {
+    throw new Error('Not implemented');
+  }
+}

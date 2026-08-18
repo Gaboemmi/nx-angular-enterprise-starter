@@ -1,0 +1,11 @@
+import { describe, expect, it } from 'vitest';
+
+import { <%= className %> } from './<%= fileName %>.mapper';
+
+describe('<%= className %>', () => {
+  it('maps a single item', () => {
+    const mapper = new <%= className %>();
+
+    expect(() => mapper.map(undefined)).toThrow('Not implemented');
+  });
+});

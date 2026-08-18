@@ -8,7 +8,7 @@
     "lint": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "eslint tools/architecture-enforcement tools/generators/shell"
+        "command": "eslint tools/architecture-enforcement tools/generators/shell tools/generators/mapper"
       }
     },
     "check": {
@@ -20,7 +20,7 @@
     "test": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "node node_modules/vitest/vitest.mjs run tools/architecture-enforcement tools/generators/shell --coverage --coverage.reporter=lcovonly --coverage.reporter=text-summary --coverage.reportsDirectory=coverage/architecture-enforcement"
+        "command": "node node_modules/vitest/vitest.mjs run tools/architecture-enforcement tools/generators/shell tools/generators/mapper --coverage --coverage.reporter=lcovonly --coverage.reporter=text-summary --coverage.reportsDirectory=coverage/architecture-enforcement"
       }
     }
   }

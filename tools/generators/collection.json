@@ -5,6 +5,11 @@
       "factory": "./shell/generator",
       "schema": "./shell/schema.json",
       "description": "Creates an Angular shell library for a bounded context."
+    },
+    "mapper": {
+      "factory": "./mapper/generator",
+      "schema": "./mapper/schema.json",
+      "description": "Creates a Mapper<From, To> class that translates between representations."
     }
   }
 }
